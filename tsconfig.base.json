@@ -14,7 +14,18 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {}
+    "paths": {
+      "@avans-project-cswp/backend/dto": ["libs/backend/dto/src/index.ts"],
+      "@avans-project-cswp/backend/features": [
+        "libs/backend/features/src/index.ts"
+      ],
+      "@avans-project-cswp/features": ["libs/frontend/features/src/index.ts"],
+      "@avans-project-cswp/frontend/common": [
+        "libs/frontend/common/src/index.ts"
+      ],
+      "@avans-project-cswp/shared/api": ["libs/shared/api/src/index.ts"],
+      "@avans-project-cswp/ui": ["libs/frontend/ui/src/index.ts"]
+    }
   },
   "exclude": ["node_modules", "tmp"]
 }
