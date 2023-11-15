@@ -1,0 +1,147 @@
+{
+  "name": "avans-project-cswp",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "prefix": "avans-project-cswp",
+  "sourceRoot": "apps/avans-project-cswp/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/avans-project-cswp/browser",
+        "index": "apps/avans-project-cswp/src/index.html",
+        "main": "apps/avans-project-cswp/src/main.ts",
+        "polyfills": ["zone.js"],
+        "tsConfig": "apps/avans-project-cswp/tsconfig.app.json",
+        "assets": [
+          "apps/avans-project-cswp/src/favicon.ico",
+          "apps/avans-project-cswp/src/assets"
+        ],
+        "styles": ["apps/avans-project-cswp/src/styles.css"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "avans-project-cswp:build:production"
+        },
+        "development": {
+          "buildTarget": "avans-project-cswp:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "buildTarget": "avans-project-cswp:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "apps/avans-project-cswp/**/*.ts",
+          "apps/avans-project-cswp/**/*.html"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/avans-project-cswp/jest.config.ts"
+      }
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "avans-project-cswp:build"
+      }
+    },
+    "server": {
+      "dependsOn": ["build"],
+      "executor": "@angular-devkit/build-angular:server",
+      "options": {
+        "outputPath": "dist/apps/avans-project-cswp/server",
+        "main": "apps/avans-project-cswp/server.ts",
+        "tsConfig": "apps/avans-project-cswp/tsconfig.server.json"
+      },
+      "configurations": {
+        "production": {
+          "outputHashing": "media"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "sourceMap": true,
+          "extractLicenses": false,
+          "vendorChunk": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve-ssr": {
+      "executor": "@angular-devkit/build-angular:ssr-dev-server",
+      "configurations": {
+        "development": {
+          "browserTarget": "avans-project-cswp:build:development",
+          "serverTarget": "avans-project-cswp:server:development"
+        },
+        "production": {
+          "browserTarget": "avans-project-cswp:build:production",
+          "serverTarget": "avans-project-cswp:server:production"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "prerender": {
+      "executor": "@angular-devkit/build-angular:prerender",
+      "options": {
+        "routes": ["/"]
+      },
+      "configurations": {
+        "development": {
+          "browserTarget": "avans-project-cswp:build:development",
+          "serverTarget": "avans-project-cswp:server:development"
+        },
+        "production": {
+          "browserTarget": "avans-project-cswp:build:production",
+          "serverTarget": "avans-project-cswp:server:production"
+        }
+      },
+      "defaultConfiguration": "production"
+    }
+  }
+}
