@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+// import { NxWelcomeComponent } from './nx-welcome.component';
+// import { HeaderComponent } from '@avans-project-cswp-header/'
 import { FeaturesModule } from '@avans-project-cswp/frontend/features';
+ import { UiModule } from '@avans-project-cswp/ui';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule, FeaturesModule],
+  imports: [ RouterModule, FeaturesModule, UiModule],
   selector: 'avans-project-cswp-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
