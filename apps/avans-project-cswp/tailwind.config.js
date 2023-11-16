@@ -5,7 +5,8 @@ const { join } = require('path');
 module.exports = {
   content: [
     join(__dirname, 'src/**/!(*.stories|*.spec).{ts,html}'),
-    ...createGlobPatternsForDependencies(__dirname),
+    ...createGlobPatternsForDependencies(__dirname), 
+    "./node_modules/flowbite/**/*.js"
   ],
   theme: {
     extend: {},

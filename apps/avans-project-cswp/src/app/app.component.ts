@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 // import { NxWelcomeComponent } from './nx-welcome.component';
 // import { HeaderComponent } from '@avans-project-cswp-header/'
 import { FeaturesModule } from '@avans-project-cswp/frontend/features';
  import { UiModule } from '@avans-project-cswp/ui';
+ import { initFlowbite } from 'flowbite';
 
 @Component({
   standalone: true,
@@ -12,6 +13,8 @@ import { FeaturesModule } from '@avans-project-cswp/frontend/features';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
-  title = 'avans-project-cswp';
+export class AppComponent implements OnInit {
+  ngOnInit(): void {
+    initFlowbite();
+  }
 }

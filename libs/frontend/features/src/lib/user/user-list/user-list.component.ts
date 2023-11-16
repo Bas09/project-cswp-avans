@@ -4,7 +4,7 @@ import { UserService } from '../user.service';
 
 @Component({
   selector: 'app-list',
-  templateUrl: './list.component.html',
+  templateUrl: './user-list.component.html',
   styles: [],
 })
 export class ListComponent implements OnInit {
