@@ -3,9 +3,9 @@ import { Route } from '@angular/router';
 import { AboutComponent } from 'libs/frontend/features/src/lib/about/about.component';
 import { MealListComponent } from 'libs/frontend/features/src/lib/meal/meal-list/meal-list.component';
 
-import { EditComponent } from 'libs/frontend/features/src/user/edit/edit.component'
-import { DetailComponent } from 'libs/frontend/features/src/user/detail/detail.component'
-import { ListComponent } from 'libs/frontend/features/src/user/list/list.component'
+import { EditComponent } from 'libs/frontend/features/src/lib/user/user-edit/edit.component'
+import { DetailComponent } from 'libs/frontend/features/src/lib/user/user-detail/detail.component'
+import { ListComponent } from 'libs/frontend/features/src/lib/user/user-list/user-list.component'
 
 
 export const appRoutes: Route[] = [
