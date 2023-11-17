@@ -10,7 +10,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/avans-project-cswp/browser",
+        "outputPath": "dist/apps/avans-project-cswp",
         "index": "apps/avans-project-cswp/src/index.html",
         "main": "apps/avans-project-cswp/src/main.ts",
         "polyfills": ["zone.js"],
