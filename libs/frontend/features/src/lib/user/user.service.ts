@@ -13,6 +13,7 @@ export class UserService {
       lastName: 'User',
       emailAdress: 'usereen@host.com',
       role: UserRole.admin,
+      password: '12345',
     },
     {
       id: 1,
@@ -20,6 +21,7 @@ export class UserService {
       lastName: 'User',
       emailAdress: 'usertwee@host.com',
       role: UserRole.guest,
+      password: '12345',
     },
     {
       id: 2,
@@ -27,6 +29,7 @@ export class UserService {
       lastName: 'User',
       emailAdress: 'userdrie@host.com',
       role: UserRole.editor,
+      password: '12345',
     },
   ];
 

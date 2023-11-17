@@ -1,43 +1,108 @@
-<div class="component edit">
+<!-- <div class="component edit">
+
   <div class="row">
     <div class="col-md-6">
       <p>Edit works!</p>
     </div>
   </div>
-  <!-- 
-  <h1>{{ user?.firstName }} {{ user?.lastName }}</h1> -->
 
-  <!-- <div class="row">
+  <h1>{{ user?.firstName }} {{ user?.lastName }} {{ user?.id }}</h1>
+
+  <div class="row">
     <div class="col-6">
-      <input
-        type="email"
-        class="form-control"
-        value="{{ user?.emailAdress }}"
-        placeholder="Your email adress"
-      />
+      <input type="email" class="form-control" value="{{ user?.emailAdress }}" placeholder="Your email adress" />
     </div>
-  </div> -->
+  </div>
 
   <div class="row justify-content-end">
     <div class="col-6">
-      <!-- Bij Save roepen we de save() functie aan, en navigeren
-				terug naar details binnen die functie -->
-      <!-- <button
-        class="btn btn-primary btn-sm float-right"
-        href="#"
-        role="button"
-        (click)="save()"
-      > -->
-      <!-- Save
-      </button> -->
-      <!-- Bij Cancel doen we nu nog niets, maar gaan gewoon terug naar de details -->
-      <!-- <a
-        class="btn btn-outline-secondary btn-sm float-right"
-        href="#"
-        role="button"
-        routerLink=".."
-        >Cancel</a
-      > -->
+
+      <button class="btn btn-primary btn-sm float-right" href="#" role="button" (click)="save()">
+        Save
+      </button>
+      <a class="btn btn-outline-secondary btn-sm float-right" href="#" role="button" routerLink="..">Cancel</a>
     </div>
   </div>
-</div>
+
+</div> -->
+
+
+
+<!--  -->
+
+
+
+<form>
+
+  <div class="mb-6">
+    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+    <input type="email" id="email"
+      class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+      value="{{ user?.emailAdress }}" required>
+  </div>
+  <div class="mb-6">
+    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
+    <input type="text" id="password"
+      class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+      value="{{ user?.password }}" required>
+  </div>
+  <div class="mb-6">
+    <label for="repeat-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Repeat
+      password</label>
+    <input type="text" id="repeat-password"
+      class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+      required>
+  </div>
+  <div class="mb-6">
+    <label for="firstName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">FirstName</label>
+    <input type="text" id="firstName"
+      class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+      value="{{ user?.firstName }}" required>
+  </div>
+  <div class="mb-6">
+    <label for="lastName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">LastName</label>
+    <input type="text" id="lastName"
+      class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+      value="{{ user?.lastName }}" required>
+  </div>
+
+  <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select a User Role</label>
+  <select id="role"
+    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+
+    <option>Admin</option>
+    <option>Editor</option>
+    <option>Guest</option>
+
+
+
+
+
+  </select>
+
+
+
+
+
+  <!-- 
+
+  <div class="flex items-start mb-6">
+    <div class="flex items-center h-5">
+      <input id="terms" type="checkbox" value=""
+        class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
+        required>
+    </div>
+    <label for="terms" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a href="#"
+        class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a></label>
+  </div> -->
+
+  <button type="submit"
+    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+    Save</button>
+
+  <button type="reset"
+    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+    Cancel</button>
+
+
+</form>

@@ -3,7 +3,7 @@ import { Route } from '@angular/router';
 import { AboutComponent } from 'libs/frontend/features/src/lib/about/about.component';
 import { MealListComponent } from 'libs/frontend/features/src/lib/meal/meal-list/meal-list.component';
 
-//import { EditComponent } from 'libs/frontend/features/src/lib/user/user-edit/edit.component';
+import { EditComponent } from 'libs/frontend/features/src/lib/user/user-edit/edit.component';
 // import { UserDetailComponent } from 'libs/frontend/features/src/lib/user/user-detail/detail.component';
 import { UserListComponent } from 'libs/frontend/features/src/lib/user/user-list/user-list.component';
 import { DetailComponent } from 'libs/frontend/features/src/lib/user/user-detail/detail.component';
@@ -43,7 +43,7 @@ export const appRoutes: Route[] = [
 
   // users/new moet voor users/:id, omdat new anders als de id wordt gezien.
   // Volgorde is belangrijk in routing.
-  // { path: 'users/new', pathMatch: 'full', component: EditComponent },
-  // { path: 'users/:id', pathMatch: 'full', component: UserDetailComponent },
-  // { path: 'users/:id/edit', pathMatch: 'full', component: EditComponent },
+  { path: 'users/new/edit', pathMatch: 'full', component: EditComponent },
+
+  { path: 'users/:id/edit', pathMatch: 'full', component: EditComponent },
 ];

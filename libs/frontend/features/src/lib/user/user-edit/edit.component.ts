@@ -1,70 +1,46 @@
-// import { Component, OnInit } from '@angular/core';
-// import { ActivatedRoute, Router } from '@angular/router';
-// import { IUser } from '@avans-project-cswp/shared/api';
-// import { UserService } from '../user.service';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { User } from '../user.model';
+import { UserService } from '../user.service';
 
-// @Component({
-//   selector: 'client-side-project-user-edit',
-//   templateUrl: './edit.component.html',
-//   styleUrls: [],
-// })
-// export class EditComponent implements OnInit {
-//   name = '';
-//   email = '';
+//import { RouterLink } from '@angular/router';
 
-//   constructor(
-//     private route: ActivatedRoute,
-//     private userService: UserService,
-//     private router: Router
-//   ) {}
+@Component({
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+})
+export class EditComponent implements OnInit {
+  userId: string | null = null;
+  user: User | null = null;
 
-//   private user!: IUser;
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private userService: UserService
+  ) {}
 
-//   ngOnInit() {
-//     const userId = this.route.snapshot.paramMap.get('id');
-//     this.userService.read(userId).subscribe((user: IUser) => {
-//       this.user = user;
-//       this.name = user.name;
-//       this.email = user.email;
-//     });
-//   }
+  ngOnInit(): void {
+    /**
+     * We gebruiken de EditComponent om een bestaande record te wijzigen
+     * én om een nieuwe record te maken.
+     * Een bestaande record heeft een :id in de URL, bv '/users/1/edit'
+     * Als die er dus is gaan we de user ophalen en bewerken.
+     * Als er geen :id in de URL zit (via '/users/new') maken we een nieuwe record.
+     */
+    this.route.paramMap.subscribe((params) => {
+      this.userId = params.get('id');
+      if (this.userId) {
+        // Bestaande user
+        this.user = this.userService.getUserById(Number(this.userId));
+      } else {
+        // Nieuwe user
+        this.user = new User();
+      }
+    });
+  }
 
-//   updateUser() {
-//     const updatedUser: IUser = {
-//       id: this.user.id,
-//       name: this.name,
-//       email: this.email,
-//       password: this.user.password,
-//     };
-//     this.userService.updateUser(updatedUser).subscribe(() => {
-//       this.router.navigate(['/user']);
-//     });
-//   }
-
-//   //   ngOnInit() {
-//   //     const userId = this.route.snapshot.paramMap.get('id');
-//   //     console.log(userId, "ID");
-//   //     this.userService.read(userId).subscribe((user: IUser) => {
-//   //       this.name = user.name;
-//   //       this.email = user.email;
-//   //     });
-//   //   }
-
-//   //   updateUser() {
-//   //     const userId = this.route.snapshot.paramMap.get('id');
-//   //     console.log(userId, "ID");
-//   //     this.userService.read(userId).subscribe((user: IUser) => {
-//   //       const updatedUser: IUser = {
-//   //         id: user.id,
-//   //         name: this.name,
-//   //         email: this.email,
-//   //         password: user.password
-//   //       };
-//   //       this.userService.updateUser(updatedUser);
-
-//   // console.log("Finished Update", "TAG");
-//   //       this.router.navigate(['/user']);
-//   //       console.log("Navigated", "TAG");
-//   //     });
-//   //   }
-// }
+  save() {
+    console.log('Hier komt je save actie');
+    this.router.navigate(['..'], { relativeTo: this.route });
+  }
+}

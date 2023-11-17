@@ -10,6 +10,7 @@ export class User {
   lastName: string = '';
   emailAdress: string = '';
   role: UserRole = UserRole.guest;
+  password: string = '';
 
   constructor(firstName = '', lastName = '', emailAdress = '') {
     this.firstName = firstName;
