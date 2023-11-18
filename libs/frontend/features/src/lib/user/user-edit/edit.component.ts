@@ -36,10 +36,10 @@ export class EditComponent implements OnInit {
   }
 
   save() {
-    console.log('Hier komt je save actie');
     console.log('Before Save - User:', this.user);
     if (this.userId) {
-      //edit existing user
+      this.userService.editUser(this.user!);
+      console.log('After Edit - User:', this.user);
     } else {
       this.userService.addUser(this.user!);
       console.log('After Save - User:', this.user);

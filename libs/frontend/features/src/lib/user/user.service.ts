@@ -56,8 +56,48 @@ export class UserService {
 
   addUser(user: User): void {
     console.log('Before Add User:', this.users, user);
-    user.id = this.users.length + 1;
+
+    // ensures no duplicate id's
+    const maxIdNumber = Math.max(...this.users.map((u) => u.id), 0);
+
+    user.id = maxIdNumber + 1;
     this.users = [...this.users, { ...user }];
     console.log('After Add User:', this.users);
+  }
+
+  editUser(user: User): void {
+    console.log('Before Editing User:', this.users, user);
+
+    this.users.forEach((existingUser) => {
+      if (user.id == existingUser.id) {
+        console.log(
+          'Before Editing User:',
+          existingUser,
+          'User with updated info:',
+          user
+        );
+
+        existingUser.emailAdress = user.emailAdress;
+        existingUser.firstName = user.firstName;
+        existingUser.lastName = user.lastName;
+        existingUser.password = user.password;
+        existingUser.role = user.role;
+
+        console.log('After editing:', existingUser);
+      }
+    });
+  }
+
+  deleteUser(user: User): void {
+    console.log(
+      'Before deletion User:',
+      'All users: ',
+      this.users,
+      'User for deletion:',
+      user
+    );
+    this.users = this.users.filter(
+      (existingUser) => existingUser.id !== user.id
+    );
   }
 }
