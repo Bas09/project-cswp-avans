@@ -12,7 +12,11 @@ export class User {
   role: UserRole = UserRole.guest;
   password: string = '';
 
-  constructor(firstName = '', lastName = '', emailAdress = '') {
+  constructor(
+    firstName: string = '',
+    lastName: string = '',
+    emailAdress: string = ''
+  ) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.emailAdress = emailAdress;

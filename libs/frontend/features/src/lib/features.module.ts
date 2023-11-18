@@ -8,18 +8,21 @@ import { HttpClientModule } from '@angular/common/http';
 import { AboutComponent } from './about/about.component';
 import { DetailComponent } from './user/user-detail/detail.component';
 import { UserListComponent } from './user/user-list/user-list.component';
+import { EditComponent } from './user/user-edit/edit.component';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterLink } from '@angular/router';
 
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
-  imports: [CommonModule, HttpClientModule, RouterLink],
+  imports: [CommonModule, HttpClientModule, RouterLink, FormsModule],
   declarations: [
     MealListComponent,
     MealDetailComponent,
     AboutComponent,
     DetailComponent,
-
+    EditComponent,
     UserListComponent,
     DashboardComponent,
   ],
@@ -28,7 +31,7 @@ import { RouterLink } from '@angular/router';
     MealListComponent,
     MealDetailComponent,
     AboutComponent,
-
+    EditComponent,
     UserListComponent,
     DashboardComponent,
     DetailComponent,

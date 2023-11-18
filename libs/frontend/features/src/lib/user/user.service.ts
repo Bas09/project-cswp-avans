@@ -6,7 +6,7 @@ import { User, UserRole } from './user.model';
   providedIn: 'root',
 })
 export class UserService {
-  readonly users: User[] = [
+  private users: User[] = [
     {
       id: 0,
       firstName: 'Eerste',
@@ -52,5 +52,12 @@ export class UserService {
   getUserById(id: number): User {
     console.log('getUserById aangeroepen');
     return this.users.filter((user) => user.id === id)[0];
+  }
+
+  addUser(user: User): void {
+    console.log('Before Add User:', this.users, user);
+    user.id = this.users.length + 1;
+    this.users = [...this.users, { ...user }];
+    console.log('After Add User:', this.users);
   }
 }

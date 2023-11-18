@@ -1,108 +1,134 @@
 <!-- <div class="component edit">
 
-  <div class="row">
-    <div class="col-md-6">
-      <p>Edit works!</p>
+
+  <form (ngSubmit)="save()">
+    <div class="mb-6">
+      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+      <input type="email" id="email"
+        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+        [(ngModel)]="user.emailAdress" placeholder="Your email address" required>
     </div>
-  </div>
 
-  <h1>{{ user?.firstName }} {{ user?.lastName }} {{ user?.id }}</h1>
-
-  <div class="row">
-    <div class="col-6">
-      <input type="email" class="form-control" value="{{ user?.emailAdress }}" placeholder="Your email adress" />
+    <div class="mb-6">
+      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
+      <input type="password" id="password"
+        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+        [(ngModel)]="user.password" placeholder="Your password" required>
     </div>
-  </div>
 
-  <div class="row justify-content-end">
-    <div class="col-6">
-
-      <button class="btn btn-primary btn-sm float-right" href="#" role="button" (click)="save()">
-        Save
-      </button>
-      <a class="btn btn-outline-secondary btn-sm float-right" href="#" role="button" routerLink="..">Cancel</a>
+    <div class="mb-6">
+      <label for="repeat-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Repeat
+        password</label>
+      <input type="password" id="repeat-password"
+        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+        placeholder="Repeat password" required>
     </div>
-  </div>
+
+    <div class="mb-6">
+      <label for="firstName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
+      <input type="text" id="firstName"
+        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+        [(ngModel)]="user.firstName" placeholder="First Name" required>
+    </div>
+
+    <div class="mb-6">
+      <label for="lastName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
+      <input type="text" id="lastName"
+        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+        [(ngModel)]="user.lastName" placeholder="Last Name" required>
+    </div>
+
+    <div class="mb-6">
+      <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select a User Role</label>
+      <select id="role"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        [(ngModel)]="user.role">
+        <option>Admin</option>
+        <option>Editor</option>
+        <option>Guest</option>
+      </select>
+    </div>
+
+    <div class="row justify-content-end">
+      <div class="col-6">
+        <button type="submit"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          (click)="save()">
+          Save
+        </button>
+
+        <button type="reset"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </form>
+
 
 </div> -->
 
-
-
-<!--  -->
-
-
-
-<form>
-
-  <div class="mb-6">
-    <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-    <input type="email" id="email"
-      class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-      value="{{ user?.emailAdress }}" required>
-  </div>
-  <div class="mb-6">
-    <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
-    <input type="text" id="password"
-      class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-      value="{{ user?.password }}" required>
-  </div>
-  <div class="mb-6">
-    <label for="repeat-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Repeat
-      password</label>
-    <input type="text" id="repeat-password"
-      class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-      required>
-  </div>
-  <div class="mb-6">
-    <label for="firstName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">FirstName</label>
-    <input type="text" id="firstName"
-      class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-      value="{{ user?.firstName }}" required>
-  </div>
-  <div class="mb-6">
-    <label for="lastName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">LastName</label>
-    <input type="text" id="lastName"
-      class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-      value="{{ user?.lastName }}" required>
-  </div>
-
-  <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select a User Role</label>
-  <select id="role"
-    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-
-    <option>Admin</option>
-    <option>Editor</option>
-    <option>Guest</option>
-
-
-
-
-
-  </select>
-
-
-
-
-
-  <!-- 
-
-  <div class="flex items-start mb-6">
-    <div class="flex items-center h-5">
-      <input id="terms" type="checkbox" value=""
-        class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
-        required>
+<div class="component edit">
+  <form (ngSubmit)="save()">
+    <div class="mb-6">
+      <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
+      <input type="email" id="email" name="email"
+        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+        [(ngModel)]="user.emailAdress" placeholder="Your email address" required>
     </div>
-    <label for="terms" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a href="#"
-        class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a></label>
-  </div> -->
 
-  <button type="submit"
-    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-    Save</button>
+    <div class="mb-6">
+      <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
+      <input type="password" id="password" name="password"
+        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+        [(ngModel)]="user.password" placeholder="Your password" required>
+    </div>
 
-  <button type="reset"
-    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-    Cancel</button>
+    <div class="mb-6">
+      <label for="repeat-password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Repeat
+        password</label>
+      <input type="password" id="repeat-password" name="repeatPassword"
+        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+        placeholder="Repeat password" required>
+    </div>
 
+    <div class="mb-6">
+      <label for="firstName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
+      <input type="text" id="firstName" name="firstName"
+        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+        [(ngModel)]="user.firstName" placeholder="First Name" required>
+    </div>
 
-</form>
+    <div class="mb-6">
+      <label for="lastName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
+      <input type="text" id="lastName" name="lastName"
+        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+        [(ngModel)]="user.lastName" placeholder="Last Name" required>
+    </div>
+
+    <div class="mb-6">
+      <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select a User Role</label>
+      <select id="role" name="role"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        [(ngModel)]="user.role">
+        <option>Admin</option>
+        <option>Editor</option>
+        <option>Guest</option>
+      </select>
+    </div>
+
+    <div class="row justify-content-end">
+      <div class="col-6">
+        <button type="submit"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+          Save
+        </button>
+
+        <button type="reset"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
