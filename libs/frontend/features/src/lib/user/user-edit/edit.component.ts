@@ -44,6 +44,7 @@ export class EditComponent implements OnInit {
       this.userService.addUser(this.user!);
       console.log('After Save - User:', this.user);
     }
-    this.router.navigate(['..'], { relativeTo: this.route });
+    // this.router.navigate(['..'], { relativeTo: this.route });
+    this.router.navigate(['/users']);
   }
 }
