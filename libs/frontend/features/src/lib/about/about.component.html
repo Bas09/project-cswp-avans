@@ -1,42 +1,308 @@
-<!-- basis styling nog toevoegen, komt later -->
+<div class="border-solid border-1 border-black  rounded-lg p-3 m-3">
 
-<h1>Share a Meal projectcasus</h1>
-<p>Deze webapplicatie is gemaakt in het kader van het vak Client-side web development, individueel project.</p>
-<p>Hier jouw beschrijving.</p>
-<h2>Functional requirements</h2>
-<p>De applicatie biedt de onderstaande functionaliteiten:</p>
-<table>
-    <thead>
-        <tr>
-            <td>Nr.</td>
-            <td>Requirement</td>
-            <td>Toelichting</td>
-            <td>Moscow prio</td>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>1</td>
-            <td>De gebruiker kan een lijst van maaltijden inzien.</td>
-            <td>De lijst is een tabel. Door te klikken op een maaltijd navigeer je naar de details</td>
-            <td>M</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>De gebruiker kan alle details van een maaltijd inzien.</td>
-            <td>Beschrijving</td>
-            <td>M</td>
-        </tr>
-    </tbody>
-</table>
+    <h1 class="text-3xl font-bold">Client-side web development projectcasus</h1><br>
+    <p>Deze webapplicatie is gemaakt in het kader van Client-Side Web Development, individueel project</p>
+    <br>
+    <p>In deze applicatie hebben muziekliefhebbers de mogelijkheid om een afspeellijst samen te stellen,
+        waaraan ze hun favorieten nummers kunnen toevoegen. Deze playlists kunnen gedeeld worden met vrienden van de
+        gebruiker. Naast afspeellijsten heeft de gebruiker ook een abonneelijst waaraan de favorieten artiesten van een
+        gebruiker toegevoegd kunnen worden.
+        Iedere gebruiker kan ook de abonneelijst van vrienden inzien.
+    </p><br>
+    <p>Naast gebruikers kunnen artiesten zelf ook inloggen op de app. Artiesten kunnen hierdoor zelf nummers toevoegen
+        en aanpassingen maken aan bestaande nummers van hun.</p><br>
 
-<h2>Non-functional requirements</h2>
-<p>korte toelichting</p>
+    <h2 class="text-xl font-bold">Functional Requirements</h2>
+    <p>De applicatie biedt de onderstaande functionaliteiten:</p>
 
-<table>
-    <p>enz.</p>
-</table>
+    <div class="overflow-x-auto">
+        <table class="table-auto border-collapse border border-blue-400 mt-4 mb-4 mx-2">
+            <thead>
+                <tr class="bg-blue-200">
+                    <th class="px-4 py-2">Number</th>
+                    <th class="px-4 py-2">Requirement</th>
+                    <th class="px-4 py-2">Toelichting</th>
+                    <th class="px-4 py-2">Moscow Prio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border px-4 py-2">1</td>
+                    <td class="border px-4 py-2">Accountregistratie</td>
+                    <td class="border px-4 py-2">Gebruikers en artiesten moeten zich kunnen registreren.</td>
+                    <td class="border px-4 py-2">M</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">2</td>
+                    <td class="border px-4 py-2">Afspeellijsten CRUD</td>
+                    <td class="border px-4 py-2">Gebruikers moeten afspeellijsten kunnen aanmaken, inzien, wijzigen en
+                        verwijderen</td>
+                    <td class="border px-4 py-2">M</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">3</td>
+                    <td class="border px-4 py-2">Abonneren op artiesten</td>
+                    <td class="border px-4 py-2">Gebruikers kunnen artiesten opzoeken en deze toevoegen aan hun
+                        abonneelijst.</td>
+                    <td class="border px-4 py-2">M</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">4</td>
+                    <td class="border px-4 py-2">Muzieknummers opzoeken</td>
+                    <td class="border px-4 py-2">De gebruiker kan muzieknummers opzoeken en deze toevoegen aan een
+                        afspeellijst.</td>
+                    <td class="border px-4 py-2">M</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">5</td>
+                    <td class="border px-4 py-2">Delen van afspeellijsten</td>
+                    <td class="border px-4 py-2">Als een gebruiker op een afspeellijst klikt, moet er een functie zijn
+                        om deze te delen met vrienden.</td>
+                    <td class="border px-4 py-2">M</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">6</td>
+                    <td class="border px-4 py-2">Inzien van abonneelijst vrienden</td>
+                    <td class="border px-4 py-2">Een gebruiker moet in staat zijn abonneelijsten van vrienden te zien.
+                    </td>
+                    <td class="border px-4 py-2">M</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">7</td>
+                    <td class="border px-4 py-2">Artiesten hebben CRUD functionaliteit op hun eigen nummers</td>
+                    <td class="border px-4 py-2">Een artiest moet nummers kunnen toevoegen, wijzigen, inzien en
+                        verwijderen</td>
+                    <td class="border px-4 py-2">M</td>
+                </tr>
 
-<h2>Datamodel / ERD</h2>
-<p>toelichting</p>
-<img src="" alt="">
+                <tr>
+                    <td class="border px-4 py-2">8</td>
+                    <td class="border px-4 py-2">Dashboard</td>
+                    <td class="border px-4 py-2">De opstartpagina is een dashboard waarmee de gebruiker door de
+                        applicatie kan navigeren.</td>
+                    <td class="border px-4 py-2">M</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2 class="text-xl font-bold">Non-Functional Requirements</h2>
+    <div class="overflow-x-auto">
+        <table class="table-auto border-collapse border border-blue-400 mt-4 mb-4 mx-2">
+            <thead>
+                <tr class="bg-blue-200">
+                    <th class="px-4 py-2">Number</th>
+                    <th class="px-4 py-2">Requirement</th>
+                    <th class="px-4 py-2">Toelichting</th>
+                    <th class="px-4 py-2">Moscow Prio</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border px-4 py-2">1</td>
+                    <td class="border px-4 py-2">User experience</td>
+                    <td class="border px-4 py-2">De applicatie moet voldoen aan UX design richtlijnen.</td>
+                    <td class="border px-4 py-2">M</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">2</td>
+                    <td class="border px-4 py-2">Design</td>
+                    <td class="border px-4 py-2">De applicatie moet aantrekkelijk in design zijn.</td>
+                    <td class="border px-4 py-2">M</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">3</td>
+                    <td class="border px-4 py-2">Beschikbaarheid</td>
+                    <td class="border px-4 py-2">De applicatie moet beschikbaar zijn op pc en telefoon.</td>
+                    <td class="border px-4 py-2">M</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">4</td>
+                    <td class="border px-4 py-2">Beveiliging</td>
+                    <td class="border px-4 py-2">Gebruikersgegevens moeten veilig opgeslagen worden.
+                    </td>
+                    <td class="border px-4 py-2">M</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">5</td>
+                    <td class="border px-4 py-2">Swagger</td>
+                    <td class="border px-4 py-2">Er is swagger documentatie aanwezig voor een api.</td>
+                    <td class="border px-4 py-2">S</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <h2 class="text-xl font-bold">Entiteiten</h2>
+
+    <div>
+
+        <table class="table-auto border-collapse border border-blue-400 mt-4 mb-4 mx-2" style="float: left;">
+            <thead>
+                <tr class="bg-blue-200">
+                    <th class="px-4 py-2">User</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border px-4 py-2">id : int</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">Name : string</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">Email : string</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">DateOfBirth : string</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">Country : string</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">PremiumStatus : int</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table-auto table-fixed border-collapse border border-blue-400 mt-4 mb-4 mx-2"
+            style="float: left;">
+            <thead>
+                <tr class="bg-blue-200">
+                    <th class="px-4 py-2">Playlist</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border px-4 py-2">id : int</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">Name : string</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">DateCreated : string</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">Genre : enum</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">PublicStatus : dateTime</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">Description : String</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table-auto table-fixed border-collapse border border-blue-400 mt-4 mb-4 mx-2"
+            style="float: left;">
+            <thead>
+                <tr class="bg-blue-200">
+                    <th class="px-4 py-2">Song</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border px-4 py-2">id : int</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">Title : string</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">Duration : string</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">ReleaseDate : dateTime</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">Genre : enum</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">ArtistName : string</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table class="table-auto table-fixed border-collapse border border-blue-400 mt-4 mb-4 mx-2"
+            style="float: left;">
+            <thead>
+                <tr class="bg-blue-200">
+                    <th class="px-4 py-2">SubscriptionList</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="border px-4 py-2">id : int</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">userName : string</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">TotalSubscriptions : int</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="clear: both;"></div>
+    </div>
+
+    <table class="table-auto table-fixed border-collapse border border-blue-400 mt-4 mb-4 mx-2" style="float: left;">
+        <thead>
+            <tr class="bg-blue-200">
+                <th class="px-4 py-2">Artist</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="border px-4 py-2">id : int</td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">Name : string</td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">Genre : enum</td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">Country : string</td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">DebutYear : dateTime</td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">TotalAlbums : int</td>
+            </tr>
+            <tr>
+                <td class="border px-4 py-2">TotalSubscriptions : int</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+    <h2 class="text-xl font-bold" style="margin-top: 380px;">Datamodel / ERD</h2>
+    <p> Deze applicatie heeft de entiteiten User, Playlist, Song, SubscriptionList, Artist. SubscriptionList is een
+        zwakentiteit want deze kan zonder Artist en User niet bestaan.
+        <br><br>
+
+        De relaties zijn alsvolgt:
+        <br><br>
+        User - Playlist: Een user kan 0 of meerdere playlists hebben.
+        Playlist - user: Iedere aangemaakte playlist hoort tot 1 user.
+        <br><br>
+        Playlist - Song: Iedere playlist bevat 0 of meerdere songs.
+        Song - Playlist: Iedere song kan aan 0 of meerdere playlist toegevoegd worden.
+        <br><br>
+        User - SubscriptionList: Iedere SubscriptionList hoort tot 1 user en iedere user heeft 1 SubscriptionList.
+        <br><br>
+        SubscriptionList - Artist: Een SubscriptionList kan 0 of meerdere artiesten bevatten.
+        Artist - SubscriptionList: Iedere artiest kan aan 0 of meerdere SubscriptionLists toegevoegd zijn.
+        <br>
+        <br>
+        Artist - Song: Iedere Artist heeft 1 of meerdere songs.
+        Song - Artist: Iedere song behoort tot een artiest.
+    </p>
+
+    <br>
+
+    <section class="hero container max-w-screen-lg mx-auto pb-10 flex justify-center">
+        <img src="assets/ERD.png" alt="ERD">
+    </section>
+</div>
