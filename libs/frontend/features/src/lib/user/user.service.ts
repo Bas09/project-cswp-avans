@@ -31,6 +31,38 @@ export class UserService {
       role: UserRole.editor,
       password: '12345',
     },
+    {
+      id: 3,
+      firstName: 'Vierde',
+      lastName: 'User',
+      emailAdress: 'uservier@host.com',
+      role: UserRole.admin,
+      password: '12345',
+    },
+    {
+      id: 4,
+      firstName: 'Vijfde',
+      lastName: 'User',
+      emailAdress: 'uservijf@host.com',
+      role: UserRole.guest,
+      password: '12345',
+    },
+    {
+      id: 5,
+      firstName: 'Zesde',
+      lastName: 'User',
+      emailAdress: 'userzes@host.com',
+      role: UserRole.editor,
+      password: '12345',
+    },
+    {
+      id: 6,
+      firstName: 'Zevende',
+      lastName: 'User',
+      emailAdress: 'userzeven@host.com',
+      role: UserRole.admin,
+      password: '12345',
+    },
   ];
 
   constructor() {
