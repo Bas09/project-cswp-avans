@@ -66,7 +66,7 @@ export class UserService {
   ];
 
   constructor() {
-    console.log('Service constructor aangeroepen');
+    console.log('User.Service constructor aangeroepen');
   }
 
   getUsers(): User[] {
