@@ -20,6 +20,7 @@ export const appRoutes: Route[] = [
 
   {
     path: 'dashboard',
+    pathMatch: 'full',
     component: DashboardComponent,
   },
 
@@ -46,4 +47,9 @@ export const appRoutes: Route[] = [
   { path: 'users/new/edit', pathMatch: 'full', component: EditComponent },
 
   { path: 'users/:id/edit', pathMatch: 'full', component: EditComponent },
+
+  {
+    path: '**',
+    redirectTo: 'dashboard',
+  },
 ];
