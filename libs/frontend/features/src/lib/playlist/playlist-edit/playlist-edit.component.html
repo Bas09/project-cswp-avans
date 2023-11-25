@@ -1,0 +1,47 @@
+<div class="component edit">
+    <form (ngSubmit)="save()">
+        <div class="mb-6">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Playlist
+                Name</label>
+            <input type="text" id="name" name="name"
+                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                [(ngModel)]="playlist.name" placeholder="Name of playlist" required>
+        </div>
+
+        <div class="mb-6">
+            <label for="genre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select a Genre
+                for the playlist</label>
+            <select id="genre" name="genre"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                [(ngModel)]="selectedGenre">
+                <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+            </select>
+        </div>
+
+
+        <div class="mb-6">
+            <label for="publicStatus" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status
+            </label>
+            <select id="publicStatus" name="publicStatus"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                [(ngModel)]="selectedPublicStatus">
+                <option *ngFor="let status of publicStatusOptions" [value]="status">{{ status }}</option>
+            </select>
+        </div>
+
+        <div class="row justify-content-end">
+            <div class="col-6">
+                <button type="submit"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Save
+                </button>
+
+                <button type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    routerLink="/playlist">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
