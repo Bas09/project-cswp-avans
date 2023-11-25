@@ -25,6 +25,9 @@
       "@avans-project-cswp/frontend/features": [
         "libs/frontend/features/src/index.ts"
       ],
+      "@avans-project-cswp/frontend/features/user": [
+        "libs/frontend/features/src/lib/user/index.ts"
+      ],
       "@avans-project-cswp/shared/api": ["libs/shared/api/src/index.ts"],
       "@avans-project-cswp/ui": ["libs/frontend/ui/src/index.ts"]
     }

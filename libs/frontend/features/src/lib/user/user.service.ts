@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { User, UserRole } from './user.model';
+import { Genre, Playlist, PublicStatus } from '../playlist/playlist.model';
+import { PlaylistService } from '../playlist/playlist.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,6 +16,7 @@ export class UserService {
       emailAdress: 'john.doe@example.com',
       role: UserRole.admin,
       password: 'admin123',
+      playlists: [],
     },
     {
       id: 1,
@@ -22,6 +25,7 @@ export class UserService {
       emailAdress: 'alice.smith@example.com',
       role: UserRole.guest,
       password: 'guest123',
+      playlists: [],
     },
     {
       id: 2,
@@ -30,6 +34,7 @@ export class UserService {
       emailAdress: 'bob.johnson@example.com',
       role: UserRole.editor,
       password: 'editor123',
+      playlists: [],
     },
     {
       id: 3,
@@ -38,6 +43,7 @@ export class UserService {
       emailAdress: 'eva.white@example.com',
       role: UserRole.admin,
       password: 'admin456',
+      playlists: [],
     },
     {
       id: 4,
@@ -46,6 +52,7 @@ export class UserService {
       emailAdress: 'charlie.brown@example.com',
       role: UserRole.guest,
       password: 'guest456',
+      playlists: [],
     },
     {
       id: 5,
@@ -54,6 +61,7 @@ export class UserService {
       emailAdress: 'grace.taylor@example.com',
       role: UserRole.editor,
       password: 'editor456',
+      playlists: [],
     },
     {
       id: 6,
@@ -62,10 +70,20 @@ export class UserService {
       emailAdress: 'david.williams@example.com',
       role: UserRole.admin,
       password: 'admin789',
+      playlists: [],
     },
   ];
 
-  constructor() {
+  constructor(private playlistService: PlaylistService) {
+    this.users.forEach((user) => {
+      this.addPlaylistForUser(
+        user.id,
+        user.firstName + "'s playlist",
+        Genre.Classical,
+        PublicStatus.Public
+      );
+    });
+
     console.log('User.Service constructor aangeroepen');
   }
 
@@ -131,5 +149,39 @@ export class UserService {
     this.users = this.users.filter(
       (existingUser) => existingUser.id !== user.id
     );
+  }
+
+  addPlaylistForUser(
+    userId: number,
+    playlistName: string,
+    genre: Genre,
+    publicStatus: PublicStatus
+  ): void {
+    console.log(
+      'Before Add Playlist for User:',
+      userId,
+      playlistName,
+      genre,
+      publicStatus
+    );
+
+    const user = this.users.find((u) => u.id === userId);
+
+    if (user) {
+      const newPlaylist: Playlist = {
+        id: 0,
+        name: playlistName,
+        dateCreated: new Date(),
+        genre: genre,
+        publicStatus: publicStatus,
+      };
+
+      this.playlistService.addPlaylist(newPlaylist);
+      user.playlists.push(newPlaylist);
+
+      console.log('After Add Playlist for User:', this.users);
+    } else {
+      console.error('User not found with ID:', userId);
+    }
   }
 }

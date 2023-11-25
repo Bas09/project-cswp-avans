@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
-// import { NxWelcomeComponent } from './nx-welcome.component';
-// import { HeaderComponent } from '@avans-project-cswp-header/'
+
 import { FeaturesModule } from '@avans-project-cswp/frontend/features';
 import { UiModule } from '@avans-project-cswp/ui';
 import { initFlowbite } from 'flowbite';

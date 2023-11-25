@@ -5,6 +5,7 @@ import { UserService } from '../user.service';
 @Component({
   selector: 'avans-project-cswp-user-list',
   templateUrl: './user-list.component.html',
+
   styles: [],
 })
 export class UserListComponent implements OnInit {
