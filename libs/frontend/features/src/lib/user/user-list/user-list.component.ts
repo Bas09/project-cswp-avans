@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
+import { Playlist } from '../../playlist/playlist.model';
 
 @Component({
   selector: 'avans-project-cswp-user-list',
@@ -9,7 +10,7 @@ import { UserService } from '../user.service';
   styles: [],
 })
 export class UserListComponent implements OnInit {
-  users: User[] = [];
+  users: User<Playlist>[] = [];
 
   constructor(private userService: UserService) {}
 

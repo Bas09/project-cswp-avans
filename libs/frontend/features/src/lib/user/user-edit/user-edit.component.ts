@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
+import { Playlist } from '../../playlist/playlist.model';
 
 //import { RouterLink } from '@angular/router';
 
@@ -11,7 +12,7 @@ import { UserService } from '../user.service';
 })
 export class UserEditComponent implements OnInit {
   userId: string | null = null;
-  user: User = new User();
+  user: User<Playlist> = new User();
 
   constructor(
     private route: ActivatedRoute,

@@ -8,7 +8,7 @@ import { PlaylistService } from '../playlist/playlist.service';
   providedIn: 'root',
 })
 export class UserService {
-  private users: User[] = [
+  private users: User<Playlist>[] = [
     {
       id: 0,
       firstName: 'John',
@@ -16,7 +16,7 @@ export class UserService {
       emailAdress: 'john.doe@example.com',
       role: UserRole.admin,
       password: 'admin123',
-      playlists: [],
+      playlistsFromUser: [],
     },
     {
       id: 1,
@@ -25,7 +25,7 @@ export class UserService {
       emailAdress: 'alice.smith@example.com',
       role: UserRole.guest,
       password: 'guest123',
-      playlists: [],
+      playlistsFromUser: [],
     },
     {
       id: 2,
@@ -34,7 +34,7 @@ export class UserService {
       emailAdress: 'bob.johnson@example.com',
       role: UserRole.editor,
       password: 'editor123',
-      playlists: [],
+      playlistsFromUser: [],
     },
     {
       id: 3,
@@ -43,7 +43,7 @@ export class UserService {
       emailAdress: 'eva.white@example.com',
       role: UserRole.admin,
       password: 'admin456',
-      playlists: [],
+      playlistsFromUser: [],
     },
     {
       id: 4,
@@ -52,7 +52,7 @@ export class UserService {
       emailAdress: 'charlie.brown@example.com',
       role: UserRole.guest,
       password: 'guest456',
-      playlists: [],
+      playlistsFromUser: [],
     },
     {
       id: 5,
@@ -61,7 +61,7 @@ export class UserService {
       emailAdress: 'grace.taylor@example.com',
       role: UserRole.editor,
       password: 'editor456',
-      playlists: [],
+      playlistsFromUser: [],
     },
     {
       id: 6,
@@ -70,41 +70,40 @@ export class UserService {
       emailAdress: 'david.williams@example.com',
       role: UserRole.admin,
       password: 'admin789',
-      playlists: [],
+      playlistsFromUser: [],
     },
   ];
 
   constructor(private playlistService: PlaylistService) {
-    this.users.forEach((user) => {
-      this.addPlaylistForUser(
-        user.id,
-        user.firstName + "'s playlist",
-        Genre.Classical,
-        PublicStatus.Public
-      );
-    });
-
-    console.log('User.Service constructor aangeroepen');
+    // this.users.forEach((user) => {
+    //   this.addPlaylistForUser(
+    //     user.id,
+    //     user.firstName + "'s playlist",
+    //     Genre.Default,
+    //     PublicStatus.Default
+    //   );
+    // });
+    // console.log('User.Service constructor aangeroepen');
   }
 
-  getUsers(): User[] {
+  getUsers(): User<Playlist>[] {
     console.log('getUsers aangeroepen');
     return this.users;
   }
 
-  getUsersAsObservable(): Observable<User[]> {
+  getUsersAsObservable(): Observable<User<Playlist>[]> {
     console.log('getUsersAsObservable aangeroepen');
     // 'of' is een rxjs operator die een Observable
     // maakt van de gegeven data.
     return of(this.users);
   }
 
-  getUserById(id: number): User {
+  getUserById(id: number): User<Playlist> {
     console.log('getUserById aangeroepen');
     return this.users.filter((user) => user.id === id)[0];
   }
 
-  addUser(user: User): void {
+  addUser(user: User<Playlist>): void {
     console.log('Before Add User:', this.users, user);
 
     // ensures no duplicate id's
@@ -115,7 +114,7 @@ export class UserService {
     console.log('After Add User:', this.users);
   }
 
-  editUser(user: User): void {
+  editUser(user: User<Playlist>): void {
     console.log('Before Editing User:', this.users, user);
 
     this.users.forEach((existingUser) => {
@@ -138,7 +137,7 @@ export class UserService {
     });
   }
 
-  deleteUser(user: User): void {
+  deleteUser(user: User<Playlist>): void {
     console.log(
       'Before deletion User:',
       'All users: ',
@@ -169,15 +168,16 @@ export class UserService {
 
     if (user) {
       const newPlaylist: Playlist = {
-        id: 0,
+        id: -1,
         name: playlistName,
         dateCreated: new Date(),
         genre: genre,
         publicStatus: publicStatus,
       };
 
-      this.playlistService.addPlaylist(newPlaylist);
-      user.playlists.push(newPlaylist);
+      const playlistId = this.playlistService.addPlaylist(newPlaylist);
+      newPlaylist.id = playlistId;
+      user.playlistsFromUser.push(newPlaylist);
 
       console.log('After Add Playlist for User:', this.users);
     } else {

@@ -13,6 +13,7 @@ import { PlaylistComponent } from 'libs/frontend/features/src/lib/playlist/playl
 // import childroutes
 import { userRoutes } from 'libs/frontend/features/src/lib/user/user.routes';
 import { playlistRoutes } from 'libs/frontend/features/src/lib/playlist/playlist.routes';
+import { artistRoutes } from 'libs/frontend/features/src/lib/artist/artist.routes';
 
 export const appRoutes: Route[] = [
   // home page or dashboard
@@ -45,6 +46,8 @@ export const appRoutes: Route[] = [
 
   // playlist pages
   ...playlistRoutes,
+
+  ...artistRoutes,
 
   {
     path: 'login',

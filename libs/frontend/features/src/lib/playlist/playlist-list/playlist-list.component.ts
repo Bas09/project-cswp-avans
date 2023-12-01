@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Playlist } from '../playlist.model';
 import { PlaylistService } from '../playlist.service';
-
-import { UserListComponent } from '../../user/user-list/user-list.component';
 import { User } from '../../user/user.model';
 import { UserService } from '../../user/user.service';
 
@@ -13,7 +11,7 @@ import { UserService } from '../../user/user.service';
 })
 export class PlaylistComponent implements OnInit {
   playlists: Playlist[] = [];
-  userlist: User[] = [];
+  userlist: User<Playlist>[] = [];
 
   constructor(
     private playlistService: PlaylistService,
@@ -21,8 +19,10 @@ export class PlaylistComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.playlists = this.playlistService.getPlaylists();
-    console.log('Playlists:', this.playlists);
+    this.playlistService.getPlaylistsAsObservable().subscribe((playlists) => {
+      this.playlists = playlists;
+      console.log('Playlists:', this.playlists);
+    });
 
     this.userlist = this.userService.getUsers();
     console.log('Users:', this.userlist);

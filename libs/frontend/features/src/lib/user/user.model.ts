@@ -1,4 +1,4 @@
-import { Playlist } from '../playlist/playlist.model';
+import { Playlist, Genre, PublicStatus } from '../playlist/playlist.model';
 
 export enum UserRole {
   admin = 'admin',
@@ -6,24 +6,24 @@ export enum UserRole {
   guest = 'guest',
 }
 
-export class User {
+export class User<T> {
   id: number = 0;
   firstName: string = '';
   lastName: string = '';
   emailAdress: string = '';
   role: UserRole = UserRole.guest;
   password: string = '';
-  playlists: Playlist[] = [];
+  playlistsFromUser: T[] = [];
 
   constructor(
     firstName: string = '',
     lastName: string = '',
     emailAdress: string = '',
-    playlists: Playlist[] = []
+    playlistsFromUser: T[] = []
   ) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.emailAdress = emailAdress;
-    this.playlists = playlists;
+    this.playlistsFromUser = playlistsFromUser;
   }
 }

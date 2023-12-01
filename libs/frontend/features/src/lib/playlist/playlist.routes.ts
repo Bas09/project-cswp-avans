@@ -17,6 +17,11 @@ export const playlistRoutes: Routes = [
     component: PlaylistDetailComponent,
   },
   {
+    path: 'playlist/:id/edit',
+    pathMatch: 'full',
+    component: PlaylistEditComponent,
+  },
+  {
     path: 'playlist/new/edit',
     pathMatch: 'full',
     component: PlaylistEditComponent,
@@ -26,4 +31,9 @@ export const playlistRoutes: Routes = [
     pathMatch: 'full',
     component: PlaylistEditComponent,
   },
+  // {
+  //   path: 'playlist/user/:id',
+  //   pathMatch: 'full',
+  //   component: PlaylistEditComponent,
+  // },
 ];

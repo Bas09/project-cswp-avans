@@ -29,14 +29,21 @@ export class PlaylistService {
     return this.playlists.filter((playlist) => playlist.id === id)[0];
   }
 
-  addPlaylist(playlist: Playlist): void {
-    console.log('addPlaylist requested');
+  addPlaylist(playlist: Playlist): number {
+    console.log('addPlaylist requested', playlist, this.playlists);
+    const maxIdNumber = Math.max(...this.playlists.map((p) => p.id), 0);
 
     // ensures no duplicate id's
-    const maxIdNumber = Math.max(...this.playlists.map((p) => p.id), 0);
-    playlist.id = maxIdNumber + 1;
+    if (playlist.id == -1) {
+      playlist.id = maxIdNumber + 1;
+    } else {
+      playlist.id = maxIdNumber + 1;
+    }
+
     this.playlists = [...this.playlists, { ...playlist }];
-    console.log('After playlist added:', this.playlists);
+    console.log('After playlist added:', playlist, this.playlists);
+
+    return playlist.id;
   }
 
   editPlaylist(playlist: Playlist): void {
