@@ -1,11 +1,15 @@
-<div class="component edit">
-    <form (ngSubmit)="save()">
+<div class="playlistEdit">
+
+
+    <form #playlistEditForm="ngForm" name="form" (ngSubmit)="playlistEditForm.form.valid && onSubmit(entity)"
+        novalidate>
+
         <div class="mb-6">
             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Playlist
                 Name</label>
             <input type="text" id="name" name="name"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                [(ngModel)]="newPlaylistName" placeholder="Name of playlist" required>
+                [(ngModel)]="entity.name" placeholder="Name of playlist" required>
         </div>
 
 
@@ -14,8 +18,8 @@
                 for the playlist</label>
             <select id="genre" name="genre"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                [(ngModel)]="selectedGenre">
-                <option *ngFor="let genre of genres" [value]="genre">{{ genre }}</option>
+                [(ngModel)]="entity.genre">
+                <option *ngFor="let genre of selectedGenres" [value]="genre">{{ genre }}</option>
             </select>
         </div>
 
@@ -26,7 +30,7 @@
             <select id="publicStatus" name="publicStatus"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 [(ngModel)]="selectedPublicStatus">
-                <option *ngFor="let status of publicStatusOptions" [value]="status">{{ status }}</option>
+                <option *ngFor="let status of selectedPublicStatus" [value]="status">{{ status }}</option>
             </select>
         </div>
 

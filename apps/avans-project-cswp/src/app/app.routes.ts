@@ -1,14 +1,13 @@
 import { Route } from '@angular/router';
 
 import { AboutComponent } from 'libs/frontend/features/src/lib/about/about.component';
-import { MealListComponent } from 'libs/frontend/features/src/lib/meal/meal-list/meal-list.component';
 
 import { DashboardComponent } from 'libs/frontend/features/src/lib/dashboard/dashboard.component';
 
 import { LoginComponent } from 'libs/frontend/features/src/lib/auth/login/login.component';
 import { RegisterComponent } from 'libs/frontend/features/src/lib/auth/register/register.component';
 
-import { PlaylistComponent } from 'libs/frontend/features/src/lib/playlist/playlist-list/playlist-list.component';
+import { PlaylistListComponent } from 'libs/frontend/features/src/lib/playlist/playlist-list/playlist-list.component';
 
 // import childroutes
 import { userRoutes } from 'libs/frontend/features/src/lib/user/user.routes';
@@ -33,12 +32,6 @@ export const appRoutes: Route[] = [
   {
     path: 'about',
     component: AboutComponent,
-  },
-
-  // meal page
-  {
-    path: 'meals',
-    component: MealListComponent,
   },
 
   // user pages

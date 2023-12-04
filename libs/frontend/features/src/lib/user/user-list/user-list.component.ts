@@ -1,21 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../user.model';
 import { UserService } from '../user.service';
-import { Playlist } from '../../playlist/playlist.model';
+import { IUser } from '@avans-project-cswp/shared/api';
+import { ListComponent } from '../../abstractions/components/list.component';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'avans-project-cswp-user-list',
   templateUrl: './user-list.component.html',
-
   styles: [],
+  standalone: true,
+  imports: [CommonModule, HttpClientModule, RouterModule],
+  providers: [UserService],
 })
-export class UserListComponent implements OnInit {
-  users: User<Playlist>[] = [];
-
-  constructor(private userService: UserService) {}
-
-  ngOnInit(): void {
-    this.users = this.userService.getUsers();
-    console.log('Users:', this.users);
+export class UserListComponent extends ListComponent<IUser> {
+  constructor(userService: UserService) {
+    super(userService);
   }
 }

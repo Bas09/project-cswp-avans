@@ -1,30 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { Playlist } from '../playlist.model';
 import { PlaylistService } from '../playlist.service';
-import { User } from '../../user/user.model';
 import { UserService } from '../../user/user.service';
+import { IPlaylist } from '@avans-project-cswp/shared/api';
+import { ListComponent } from '../../abstractions/components/list.component';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'avans-project-cswp-user-list',
+  selector: 'avans-project-cswp-playlist-list',
   templateUrl: './playlist-list.component.html',
   styles: [],
+  standalone: true,
+  imports: [CommonModule, HttpClientModule, RouterModule],
+  providers: [UserService],
 })
-export class PlaylistComponent implements OnInit {
-  playlists: Playlist[] = [];
-  userlist: User<Playlist>[] = [];
-
-  constructor(
-    private playlistService: PlaylistService,
-    private userService: UserService
-  ) {}
-
-  ngOnInit(): void {
-    this.playlistService.getPlaylistsAsObservable().subscribe((playlists) => {
-      this.playlists = playlists;
-      console.log('Playlists:', this.playlists);
-    });
-
-    this.userlist = this.userService.getUsers();
-    console.log('Users:', this.userlist);
+export class PlaylistListComponent extends ListComponent<IPlaylist> {
+  constructor(playlistService: PlaylistService) {
+    super(playlistService);
   }
 }

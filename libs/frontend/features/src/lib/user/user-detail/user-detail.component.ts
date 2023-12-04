@@ -1,33 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { User } from '../user.model';
 import { UserService } from '../user.service';
-import { Playlist } from '../../playlist/playlist.model';
+import { IUser } from '@avans-project-cswp/shared/api';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { DetailComponent } from '../../abstractions/components/detail.component';
 
 @Component({
   selector: 'avans-project-cswp-user-detail',
   templateUrl: './user-detail.component.html',
+  styles: [],
+  standalone: true,
+  imports: [CommonModule, HttpClientModule, RouterModule],
+  providers: [UserService],
 })
-export class UserDetailComponent implements OnInit {
-  userId: string | null = null;
-  user: User<Playlist> | null = null;
-
-  constructor(
-    private route: ActivatedRoute,
-    private userService: UserService,
-    private router: Router
-  ) {}
-
-  ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      this.userId = params.get('id');
-      this.user = this.userService.getUserById(Number(this.userId));
-    });
-  }
-
-  delete(): void {
-    console.log('Before delete - User', this.user);
-    this.userService.deleteUser(this.user!);
-    this.router.navigate(['/users']);
+export class UserDetailComponent extends DetailComponent<IUser> {
+  constructor(userService: UserService, route: ActivatedRoute, router: Router) {
+    super(userService, route, router);
   }
 }

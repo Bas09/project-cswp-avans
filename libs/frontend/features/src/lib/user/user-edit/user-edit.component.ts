@@ -1,50 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '../user.model';
 import { UserService } from '../user.service';
 import { Playlist } from '../../playlist/playlist.model';
-
-//import { RouterLink } from '@angular/router';
+import { Observable } from 'rxjs';
+import { IUser } from '@avans-project-cswp/shared/api';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { EditComponent } from '../../abstractions/components/edit.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'avans-project-cswp-user-edit',
   templateUrl: './user-edit.component.html',
+  standalone: true,
+  imports: [CommonModule, HttpClientModule, RouterModule, FormsModule],
 })
-export class UserEditComponent implements OnInit {
-  userId: string | null = null;
-  user: User<Playlist> = new User();
-
-  constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private userService: UserService
-  ) {}
-
-  ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
-      this.userId = params.get('id');
-      if (this.userId) {
-        // Bestaande user
-        this.user = this.userService.getUserById(Number(this.userId));
-        console.log('Existing User:', this.user);
-      } else {
-        // Nieuwe user
-        this.user = new User();
-        console.log('New User:', this.user);
-      }
-    });
+export class UserEditComponent extends EditComponent<IUser> implements OnInit {
+  constructor(userService: UserService, route: ActivatedRoute, router: Router) {
+    super(userService, route, router);
   }
 
-  save() {
-    console.log('Before Save - User:', this.user);
-    if (this.userId) {
-      this.userService.editUser(this.user!);
-      console.log('After Edit - User:', this.user);
-    } else {
-      this.userService.addUser(this.user!);
-      console.log('After Save - User:', this.user);
-    }
-    // this.router.navigate(['..'], { relativeTo: this.route });
-    this.router.navigate(['/users']);
-  }
+  // override override ngOnInit(): void {
+  //     super.ngOnInit();
+
+  //     if(this.entity._id)
+  // }
 }

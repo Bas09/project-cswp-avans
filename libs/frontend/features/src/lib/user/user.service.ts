@@ -3,11 +3,16 @@ import { Observable, of } from 'rxjs';
 import { User, UserRole } from './user.model';
 import { Genre, Playlist, PublicStatus } from '../playlist/playlist.model';
 import { PlaylistService } from '../playlist/playlist.service';
+// import { EntityService } from '../../../../common/src';
+import { EntityService } from '../abstractions/services/entity.service';
+import { IUser } from '@avans-project-cswp/shared/api';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '@avans-project-cswp/shared/util-env';
 
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class UserService extends EntityService<IUser> {
   private users: User<Playlist>[] = [
     {
       id: 0,
@@ -74,114 +79,7 @@ export class UserService {
     },
   ];
 
-  constructor(private playlistService: PlaylistService) {
-    // this.users.forEach((user) => {
-    //   this.addPlaylistForUser(
-    //     user.id,
-    //     user.firstName + "'s playlist",
-    //     Genre.Default,
-    //     PublicStatus.Default
-    //   );
-    // });
-    // console.log('User.Service constructor aangeroepen');
-  }
-
-  getUsers(): User<Playlist>[] {
-    console.log('getUsers aangeroepen');
-    return this.users;
-  }
-
-  getUsersAsObservable(): Observable<User<Playlist>[]> {
-    console.log('getUsersAsObservable aangeroepen');
-    // 'of' is een rxjs operator die een Observable
-    // maakt van de gegeven data.
-    return of(this.users);
-  }
-
-  getUserById(id: number): User<Playlist> {
-    console.log('getUserById aangeroepen');
-    return this.users.filter((user) => user.id === id)[0];
-  }
-
-  addUser(user: User<Playlist>): void {
-    console.log('Before Add User:', this.users, user);
-
-    // ensures no duplicate id's
-    const maxIdNumber = Math.max(...this.users.map((u) => u.id), 0);
-
-    user.id = maxIdNumber + 1;
-    this.users = [...this.users, { ...user }];
-    console.log('After Add User:', this.users);
-  }
-
-  editUser(user: User<Playlist>): void {
-    console.log('Before Editing User:', this.users, user);
-
-    this.users.forEach((existingUser) => {
-      if (user.id == existingUser.id) {
-        console.log(
-          'Before Editing User:',
-          existingUser,
-          'User with updated info:',
-          user
-        );
-
-        existingUser.emailAdress = user.emailAdress;
-        existingUser.firstName = user.firstName;
-        existingUser.lastName = user.lastName;
-        existingUser.password = user.password;
-        existingUser.role = user.role;
-
-        console.log('After editing:', existingUser);
-      }
-    });
-  }
-
-  deleteUser(user: User<Playlist>): void {
-    console.log(
-      'Before deletion User:',
-      'All users: ',
-      this.users,
-      'User for deletion:',
-      user
-    );
-    this.users = this.users.filter(
-      (existingUser) => existingUser.id !== user.id
-    );
-  }
-
-  addPlaylistForUser(
-    userId: number,
-    playlistName: string,
-    genre: Genre,
-    publicStatus: PublicStatus
-  ): void {
-    console.log(
-      'Before Add Playlist for User:',
-      userId,
-      playlistName,
-      genre,
-      publicStatus
-    );
-
-    const user = this.users.find((u) => u.id === userId);
-
-    if (user) {
-      const newPlaylist: Playlist = {
-        id: -1,
-        name: playlistName,
-        dateCreated: new Date(),
-        genre: genre,
-        publicStatus: publicStatus,
-      };
-
-      const playlistId = this.playlistService.addPlaylist(newPlaylist);
-      newPlaylist.id = playlistId;
-      user.playlistsFromUser.push(newPlaylist);
-
-      console.log('After Add Playlist for User:', this.users);
-    } else {
-      console.error('User not found with ID:', userId);
-    }
+  constructor(client: HttpClient) {
+    super(client, environment.dataApiUrl, 'users');
   }
 }

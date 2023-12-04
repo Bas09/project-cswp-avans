@@ -5,10 +5,6 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
-import { MealListComponent } from './meal/meal-list/meal-list.component';
-import { MealDetailComponent } from './meal/meal-detail/meal-detail.component';
-import { MealService } from './meal/meal.service';
-
 import { AboutComponent } from './about/about.component';
 
 // usersimports
@@ -21,7 +17,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 
 // playlist imports
-import { PlaylistComponent } from './playlist/playlist-list/playlist-list.component';
+//import { PlaylistComponent } from './playlist/playlist-list/playlist-list.component';
 import { PlaylistDetailComponent } from './playlist/playlist-detail/playlist-detail.component';
 import { PlaylistEditComponent } from './playlist/playlist-edit/playlist-edit.component';
 
@@ -32,36 +28,32 @@ import { ArtistEditComponent } from './artist/artist-edit/artist-edit.component'
 @NgModule({
   imports: [CommonModule, HttpClientModule, RouterLink, FormsModule],
   declarations: [
-    MealListComponent,
-    MealDetailComponent,
     AboutComponent,
-    UserDetailComponent,
-    UserEditComponent,
-    UserListComponent,
+    //UserDetailComponent,
+    //UserEditComponent,
+    // UserListComponent,
     DashboardComponent,
     LoginComponent,
     RegisterComponent,
-    PlaylistComponent,
-    PlaylistDetailComponent,
-    PlaylistEditComponent,
+    //PlaylistComponent,
+    //PlaylistDetailComponent,
+    //PlaylistEditComponent,
     ArtistListComponent,
     ArtistDetailComponent,
     ArtistEditComponent,
   ],
-  providers: [MealService, DatePipe],
+  providers: [DatePipe],
   exports: [
-    MealListComponent,
-    MealDetailComponent,
     AboutComponent,
-    UserEditComponent,
-    UserListComponent,
-    UserDetailComponent,
+    //UserEditComponent,
+    // UserListComponent,
+    //UserDetailComponent,
     DashboardComponent,
     LoginComponent,
     RegisterComponent,
-    PlaylistComponent,
-    PlaylistDetailComponent,
-    PlaylistEditComponent,
+    //PlaylistComponent,
+    //PlaylistDetailComponent,
+    //PlaylistEditComponent,
     ArtistListComponent,
     ArtistDetailComponent,
     ArtistEditComponent,

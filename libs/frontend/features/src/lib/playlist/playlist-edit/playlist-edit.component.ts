@@ -1,117 +1,50 @@
+import {
+  IPlaylist,
+  IUser,
+  Genre,
+  PublicStatus,
+} from '@avans-project-cswp/shared/api';
+import { EditComponent } from '../../abstractions/components/edit.component';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Playlist, Genre, PublicStatus } from '../playlist.model';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { PlaylistService } from '../playlist.service';
-import { DatePipe } from '@angular/common';
-import { User } from '../../user/user.model';
-import { UserService } from '../../user/user.service';
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'avans-project-cswp-playlist-edit',
   templateUrl: './playlist-edit.component.html',
+  standalone: true,
+  imports: [CommonModule, HttpClientModule, RouterModule, FormsModule],
 })
-export class PlaylistEditComponent implements OnInit {
-  userPlArrayId: string | null = null;
-  playlist: Playlist = new Playlist();
-  formattedDate: string | null = null;
-  userList: User<Playlist>[] = [];
-  newPlaylistName: string = '';
-  userId: string | null = null;
-
-  // Add enums for options
-  genres = Object.values(Genre);
-  publicStatusOptions = Object.values(PublicStatus);
+export class PlaylistEditComponent
+  extends EditComponent<IPlaylist>
+  implements OnInit
+{
+  selectedGenres: Genre = Genre.Default; // Add selectedGenres property
+  selectedPublicStatus: PublicStatus = PublicStatus.Default; // Add selectedPublicStatus
 
   constructor(
-    private route: ActivatedRoute,
-    private playlistService: PlaylistService,
-    private router: Router,
-    private datePipe: DatePipe,
-    private userService: UserService
-  ) {}
-
-  ngOnInit(): void {
-    this.userList = this.userService.getUsers();
-
-    this.route.paramMap.subscribe((params) => {
-      this.userId = params.get('id');
-      this.userPlArrayId = params.get('id');
-
-      // Retrieve the state
-      //const navigationState = this.router.getCurrentNavigation()?.extras.state;
-      const navigationState = this.route.snapshot.paramMap.get('id');
-
-      // Check if there is a state and if it contains userId
-      if (navigationState) {
-        this.userId = navigationState;
-        console.log('Retrieved userId from state:', this.userId);
-      } else {
-        console.log('Retrieved no userId from state:', this.userId);
-      }
-
-      if (this.userPlArrayId) {
-        // Existing playlist
-        this.playlist = this.playlistService.getPlaylistById(
-          Number(this.userPlArrayId)
-        );
-        console.log('Existing playlist:', this.playlist);
-      } else {
-        // new playlist
-
-        this.playlist = new Playlist();
-        console.log('New Playlist:', this.playlist);
-      }
-
-      // Set the selected genre and publicStatus based on existing playlist data
-      this.selectedGenre = this.playlist.genre;
-      this.selectedPublicStatus = this.playlist.publicStatus;
-
-      console.log('Selected Genre:', this.selectedGenre);
-      console.log('Selected Public Status:', this.selectedPublicStatus);
-    });
-
-    if (this.playlist) {
-      this.formattedDate = this.datePipe.transform(
-        this.playlist.dateCreated,
-        'dd/MM/yy'
-      );
-    }
+    playlistService: PlaylistService,
+    route: ActivatedRoute,
+    router: Router
+  ) {
+    super(playlistService, route, router);
   }
 
-  selectedGenre: Genre | undefined;
-  selectedPublicStatus: PublicStatus | undefined;
+  override ngOnInit(): void {
+    super.ngOnInit();
 
-  save() {
-    console.log('Before Save - Playlist:', this.playlist);
-    console.log('Selected Genre:', this.selectedGenre);
-    console.log('Selected Public Status:', this.selectedPublicStatus);
-    console.log('Selected Name:', this.newPlaylistName);
-
-    if (this.userPlArrayId) {
-      this.playlistService.editPlaylist(this.playlist);
-      console.log('After Edit - Playlist:', this.playlist);
-    } else {
-      const newUserlist = [...this.userList]; // Create a copy to avoid mutation
-      const newPlaylist: Playlist = {
-        id: 0, // Set a temporary id; it will be updated by the service
-        name: this.newPlaylistName,
-        dateCreated: new Date(),
-        genre: this.selectedGenre || Genre.Default, // Set a default genre if none selected
-        publicStatus: this.selectedPublicStatus || PublicStatus.Default, // Set a default status if none selected
-      };
-
-      if (newUserlist.length > 0) {
-        newUserlist[0].playlistsFromUser.push(newPlaylist);
-        this.userList = newUserlist;
-      }
-
-      this.router.navigate(['/playlist']);
-    }
+    this.selectedGenres = this.entity.genre || Genre.Default;
+    this.selectedPublicStatus =
+      this.entity.publicStatus || PublicStatus.Default;
   }
 
-  delete(): void {
-    console.log('Before delete - Playlist', this.playlist);
-    this.playlistService.deletePlaylist(this.playlist!);
-    this.router.navigate(['/playlist']);
+  override onSubmit(entity: IPlaylist): void {
+    this.entity.genre = this.selectedGenres;
+    this.entity.publicStatus = this.selectedPublicStatus;
+
+    super.onSubmit(entity); // Call the parent save method
   }
 }
