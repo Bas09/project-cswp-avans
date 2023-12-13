@@ -2,12 +2,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
 // import { v4 as uuid } from 'uuid';
 import isEmail from 'validator/lib/isEmail';
-import {
-  IMeal,
-  IUser,
-  UserGender,
-  UserRole,
-} from '@avans-project-cswp/shared/api';
+import { IUser, UserGender, UserRole } from '@avans-project-cswp/shared/api';
 import { IsMongoId } from 'class-validator';
 
 export type UserDocument = User & Document;
@@ -21,39 +16,7 @@ export class User implements IUser {
     required: true,
     type: String,
   })
-  firstName!: string;
-
-  @Prop({
-    required: true,
-    type: String,
-  })
-  lastName!: string;
-
-  @Prop({
-    required: true,
-    select: false, // do not return password in select statements
-    type: String,
-  })
-  password = '';
-
-  @Prop({
-    required: true,
-    type: String,
-    select: true,
-    unique: true,
-    // validate: {
-    //     validator: isEmail,
-    //     message: 'should be a valid email address'
-    // }
-  })
-  emailAddress = '';
-
-  @Prop({
-    required: false,
-    select: true,
-    default: 'https://cdn-icons-png.flaticon.com/512/219/219969.png',
-  })
-  profileImgUrl!: string;
+  name!: string;
 
   @Prop({
     required: false,
@@ -70,18 +33,30 @@ export class User implements IUser {
   gender: UserGender = UserGender.Unknown;
 
   @Prop({
-    required: false,
-    type: Boolean,
-    default: true,
+    required: true,
+    type: String,
+    select: true,
+    unique: true,
+    // validate: {
+    //     validator: isEmail,
+    //     message: 'should be a valid email address'
+    // }
   })
-  isActive = true;
+  emailAddress = '';
 
   @Prop({
-    default: [],
-    type: [MongooseSchema.Types.ObjectId],
-    ref: 'Meal',
+    required: true,
+    select: false, // do not return password in select statements
+    type: String,
   })
-  meals: IMeal[] = [];
+  password = '';
+
+  // @Prop({
+  //   required: false,
+  //   select: true,
+  //   default: 'https://cdn-icons-png.flaticon.com/512/219/219969.png',
+  // })
+  // profileImgUrl!: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

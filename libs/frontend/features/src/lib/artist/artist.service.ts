@@ -1,113 +1,98 @@
 import { Injectable } from '@angular/core';
-import { Artist, Genre } from './artist.model';
-import { Observable, of } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { environment } from '@avans-project-cswp/shared/util-env';
 
-@Injectable({
-  providedIn: 'root',
-})
+import {
+  ApiResponse,
+  IArtist,
+  ICreateArtist,
+} from '@avans-project-cswp/shared/api';
+
+export const httpOptions = {
+  observe: 'body',
+  responseType: 'json',
+};
+
+@Injectable()
 export class ArtistService {
-  private artists: Artist[] = [
-    {
-      id: 0,
-      name: 'Michael Jackson',
-      country: 'United States',
-      debutYear: 1964,
-      genre: Genre.Rock,
-    },
-    {
-      id: 1,
-      name: 'Queen',
-      country: 'United Kingdom',
-      debutYear: 1971,
-      genre: Genre.Rock,
-    },
-    {
-      id: 2,
-      name: 'Johnny Cash',
-      country: 'United States',
-      debutYear: 1954,
-      genre: Genre.Country,
-    },
-    {
-      id: 3,
-      name: 'Bob Marley',
-      country: 'Jamaica',
-      debutYear: 1962,
-      genre: Genre.Reggae,
-    },
-    {
-      id: 4,
-      name: 'Frank Sinatra',
-      country: 'United States',
-      debutYear: 1935,
-      genre: Genre.Jazz,
-    },
-    {
-      id: 5,
-      name: 'Elvis Presley',
-      country: 'United States',
-      debutYear: 1954,
-      genre: Genre.Rock,
-    },
-  ];
+  private endpoint = environment.dataApiUrl + '/artist';
 
-  constructor() {
-    console.log('Artist.Service constructor');
+  constructor(private readonly http: HttpClient) {}
+
+  public list(options?: any): Observable<IArtist[] | null> {
+    return this.http
+      .get<ApiResponse<IArtist[]>>(this.endpoint, {
+        ...options,
+        ...httpOptions,
+      })
+      .pipe(
+        map((response: any) => response.results as IArtist[]),
+        tap(console.log),
+        catchError(this.handleError)
+      );
   }
 
-  getArtists(): Artist[] {
-    console.log('getArtists requested', this.artists);
-    return this.artists;
+  public read(id: string | null, options?: any): Observable<IArtist> {
+    return this.http
+      .get<ApiResponse<IArtist>>(`${this.endpoint}/${id}`, {
+        ...options,
+        ...httpOptions,
+      })
+      .pipe(
+        tap(console.log),
+        map((response: any) => response.results as IArtist),
+        catchError(this.handleError)
+      );
   }
 
-  getArtistsAsObservable(): Observable<Artist[]> {
-    console.log('getArtistsAsObservable requested');
-    return of(this.artists);
+  public createArtist(
+    artist: ICreateArtist,
+    options?: any
+  ): Observable<boolean> {
+    console.log('artist given to createArtist() ', artist);
+    return this.http
+      .post<ApiResponse<IArtist>>(`${this.endpoint}`, artist, {
+        ...options,
+        ...httpOptions,
+      })
+      .pipe(
+        tap(console.log),
+        map((response: any) => response.results),
+        catchError(this.handleError)
+      );
   }
 
-  getArtistById(id: number): Artist {
-    console.log('getArtistById requested with id:', id);
-    return this.artists.filter((artist) => artist.id === id)[0];
+  public updateArtist(artist: IArtist, options?: any): Observable<void> {
+    return this.http
+      .put<ApiResponse<IArtist>>(`${this.endpoint}/${artist._id}`, artist, {
+        ...options,
+        ...httpOptions,
+      })
+      .pipe(
+        tap(console.log),
+        map((response: any) => response.results),
+        catchError(this.handleError)
+      );
   }
 
-  addArtist(artist: Artist): void {
-    console.log('addArtist requested', artist);
-    console.log('Artists array before adding:', this.artists);
+  public removeArtist(id: string, options?: any): Observable<void> {
+    console.log('DELETE ARTIST');
 
-    // ensures no duplicate id's
-    const maxIdNumber = Math.max(...this.artists.map((u) => u.id), 0);
-    artist.id = maxIdNumber + 1;
-
-    this.artists = [...this.artists, { ...artist }];
-    console.log('After adding artist:', this.artists);
+    return this.http
+      .delete<ApiResponse<IArtist>>(`${this.endpoint}/${id}`, {
+        ...options,
+        ...httpOptions,
+      })
+      .pipe(
+        tap(console.log),
+        map((response: any) => response.result),
+        catchError(this.handleError)
+      );
   }
 
-  editArtist(artist: Artist): void {
-    console.log('Before editing artists Array:', this.artists);
-    console.log('Before artist is updated:', artist);
-    console.log('Genre before editing given to editArtist:', artist.genre);
-
-    this.artists.forEach((existingArtist) => {
-      if (artist.id == existingArtist.id) {
-        existingArtist.name = artist.name;
-        existingArtist.country = artist.country;
-        existingArtist.debutYear = artist.debutYear;
-        existingArtist.genre = artist.genre;
-
-        console.log('After editing artist:', existingArtist);
-      }
-    });
-  }
-
-  deleteArtist(artist: Artist): void {
-    console.log(
-      'Artist Before deletion of a artist:',
-      this.artists,
-      'Artist for deletion:',
-      artist
-    );
-    this.artists = this.artists.filter(
-      (existingArtist) => existingArtist.id !== artist.id
-    );
+  public handleError(error: HttpErrorResponse): Observable<any> {
+    return throwError(() => new Error(error.message));
   }
 }

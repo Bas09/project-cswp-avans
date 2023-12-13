@@ -1,50 +1,104 @@
-import {
-  IPlaylist,
-  IUser,
-  Genre,
-  PublicStatus,
-} from '@avans-project-cswp/shared/api';
-import { EditComponent } from '../../abstractions/components/edit.component';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { PlaylistService } from '../playlist.service';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { IPlaylist, Genre, PublicStatus } from '@avans-project-cswp/shared/api';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Types } from 'mongoose';
 
 @Component({
   selector: 'avans-project-cswp-playlist-edit',
   templateUrl: './playlist-edit.component.html',
-  standalone: true,
-  imports: [CommonModule, HttpClientModule, RouterModule, FormsModule],
+  styleUrls: [],
 })
-export class PlaylistEditComponent
-  extends EditComponent<IPlaylist>
-  implements OnInit
-{
-  selectedGenres: Genre = Genre.Default; // Add selectedGenres property
-  selectedPublicStatus: PublicStatus = PublicStatus.Default; // Add selectedPublicStatus
+export class PlaylistEditComponent implements OnInit {
+  playlist: IPlaylist = {} as IPlaylist;
+  isEditing = false;
+
+  title = '';
+  genre = '';
+  publicStatus = '';
+
+  selectedGenres: Genre[] = Object.values(Genre); // Populate genres
+  selectedPublicStatus: PublicStatus[] = Object.values(PublicStatus); // Populate public statuses
 
   constructor(
-    playlistService: PlaylistService,
-    route: ActivatedRoute,
-    router: Router
-  ) {
-    super(playlistService, route, router);
+    private route: ActivatedRoute,
+    private router: Router,
+    private playlistService: PlaylistService,
+    private formBuilder: FormBuilder
+  ) {}
+
+  ngOnInit(): void {
+    const playlistId = this.route.snapshot.paramMap.get('id');
+    console.log('ngOnInit', playlistId);
+
+    if (playlistId && playlistId != 'new') {
+      this.isEditing = true;
+      console.log('playlistId found', this.isEditing);
+      this.playlistService.read(playlistId).subscribe((playlist: IPlaylist) => {
+        this.playlist = playlist;
+        (this.title = playlist.title),
+          (this.genre = playlist.genre),
+          (this.publicStatus = playlist.publicStatus);
+      });
+    }
   }
 
-  override ngOnInit(): void {
-    super.ngOnInit();
-
-    this.selectedGenres = this.entity.genre || Genre.Default;
-    this.selectedPublicStatus =
-      this.entity.publicStatus || PublicStatus.Default;
+  savePlaylist() {
+    console.log('Save playlist clicked');
+    if (this.isEditing) {
+      console.log('updatePlaylist called', this.isEditing);
+      this.updatePlaylist();
+    } else {
+      console.log('createPlaylist called', this.isEditing);
+      this.createPlaylist();
+    }
   }
 
-  override onSubmit(entity: IPlaylist): void {
-    this.entity.genre = this.selectedGenres;
-    this.entity.publicStatus = this.selectedPublicStatus;
+  updatePlaylist() {
+    console.log('Updating playlist clicked in playlist-edit.component.ts');
+    console.log('Before Update', this.playlist);
+    const updatedPlaylist: IPlaylist = {
+      _id: this.playlist._id,
+      title: this.playlist.title,
+      description: this.playlist.description,
+      genre: this.playlist.genre,
+      publicStatus: this.playlist.publicStatus,
+      // userId: this.playlist.userId,
+    };
+    console.log('After Update', updatedPlaylist);
 
-    super.onSubmit(entity); // Call the parent save method
+    this.playlistService.updatePlaylist(updatedPlaylist).subscribe(() => {
+      console.log('After Successful Update', this.playlist);
+      this.router.navigate(['/playlists']);
+    });
+  }
+
+  createPlaylist() {
+    console.log(
+      'Creating playlist clicked in playlist-edit.component.ts',
+      'TAG'
+    );
+    const newPlaylist: IPlaylist = {
+      _id: '',
+      title: this.playlist.title,
+      description: this.playlist.description,
+      genre: this.playlist.genre,
+      publicStatus: this.playlist.publicStatus,
+      // userId: this.playlist.userId,
+      // Add other properties as needed
+    };
+    console.log('New playlist', newPlaylist);
+
+    this.playlistService.createPlaylist(newPlaylist).subscribe(
+      (response) => {
+        console.log('Playlist created successfully', response);
+        this.router.navigate(['/playlists']);
+      },
+      (error) => {
+        console.error('Error creating playlist:', error);
+      }
+    );
   }
 }

@@ -7,19 +7,20 @@ import { HttpStatus } from '@nestjs/common/enums';
 import {
   User as UserModel,
   UserDocument,
-} from '@avans-project-cswp/backend/user';
+} from '@avans-project-cswp/backend/features';
+
 import { JwtService } from '@nestjs/jwt';
-import {
-  IUserCredentials,
-  IUserIdentity,
-} from '@avans-project-cswp/shared/api';
+import { IUserCredentials, IUser } from '@avans-project-cswp/shared/api';
 import { CreateUserDto } from '@avans-project-cswp/backend/dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class AuthService {
-  //
+  public currentUser$ = new BehaviorSubject<IUser | null>(null);
+  private readonly CURRENT_USER = 'currentUser';
+
   private readonly logger = new Logger(AuthService.name);
 
   constructor(
@@ -38,7 +39,7 @@ export class AuthService {
     return null;
   }
 
-  async login(credentials: IUserCredentials): Promise<IUserIdentity> {
+  async login(credentials: IUserCredentials): Promise<IUser> {
     this.logger.log('login ' + credentials.emailAddress);
     return await this.userModel
       .findOne({
@@ -53,10 +54,10 @@ export class AuthService {
           };
           return {
             _id: user._id,
-            firstName: user.firstName,
-            lastName: user.lastName,
-            emailAddress: user.emailAddress,
+            name: user.name,
             role: user.role,
+            gender: user.gender,
+            emailAddress: user.emailAddress,
             token: this.jwtService.sign(payload),
           };
         } else {
@@ -70,8 +71,8 @@ export class AuthService {
       });
   }
 
-  async register(user: CreateUserDto): Promise<IUserIdentity> {
-    this.logger.log(`Register user ${user.firstName} ${user.lastName}`);
+  async register(user: CreateUserDto): Promise<IUser> {
+    this.logger.log(`Register user ${user.name}`);
     if (await this.userModel.findOne({ emailAddress: user.emailAddress })) {
       this.logger.debug('user exists');
       throw new ConflictException('User already exist');

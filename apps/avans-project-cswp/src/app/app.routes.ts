@@ -7,12 +7,13 @@ import { DashboardComponent } from 'libs/frontend/features/src/lib/dashboard/das
 import { LoginComponent } from 'libs/frontend/features/src/lib/auth/login/login.component';
 import { RegisterComponent } from 'libs/frontend/features/src/lib/auth/register/register.component';
 
-import { PlaylistListComponent } from 'libs/frontend/features/src/lib/playlist/playlist-list/playlist-list.component';
+// import { PlaylistListComponent } from 'libs/frontend/features/src/lib/playlist/playlist-list/playlist-list.component';
 
 // import childroutes
 import { userRoutes } from 'libs/frontend/features/src/lib/user/user.routes';
 import { playlistRoutes } from 'libs/frontend/features/src/lib/playlist/playlist.routes';
 import { artistRoutes } from 'libs/frontend/features/src/lib/artist/artist.routes';
+import { songRoutes } from 'libs/frontend/features/src/lib/song/song.routes';
 
 export const appRoutes: Route[] = [
   // home page or dashboard
@@ -41,6 +42,8 @@ export const appRoutes: Route[] = [
   ...playlistRoutes,
 
   ...artistRoutes,
+
+  ...songRoutes,
 
   {
     path: 'login',

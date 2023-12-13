@@ -1,19 +1,19 @@
 <div class="userEdit">
 
-  <form #userEditForm="ngForm" name="form" (ngSubmit)="userEditForm.form.valid && onSubmit(entity)" novalidate>
+  <form #userEditForm="ngForm" name="form" (ngSubmit)="userEditForm.form.valid && saveUser()" novalidate>
 
     <div class="mb-6">
       <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
       <input type="email" id="email" name="email"
         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-        [(ngModel)]="entity.emailAddress" placeholder="Your email address" required>
+        [(ngModel)]="user.emailAddress" placeholder="Your email address" required>
     </div>
 
     <div class="mb-6">
       <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your password</label>
       <input type="password" id="password" name="password"
         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-        [(ngModel)]="entity.password" placeholder="Your password" required>
+        [(ngModel)]="user.password" placeholder="Your password" required>
     </div>
 
     <div class="mb-6">
@@ -25,27 +25,33 @@
     </div>
 
     <div class="mb-6">
-      <label for="firstName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First Name</label>
-      <input type="text" id="firstName" name="firstName"
+      <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+      <input type="text" id="name" name="name"
         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-        [(ngModel)]="entity.firstName" placeholder="First Name" required>
+        [(ngModel)]="user.name" placeholder="First Name" required>
     </div>
 
-    <div class="mb-6">
-      <label for="lastName" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
-      <input type="text" id="lastName" name="lastName"
-        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-        [(ngModel)]="entity.lastName" placeholder="Last Name" required>
-    </div>
 
     <div class="mb-6">
       <label for="role" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select a User Role</label>
       <select id="role" name="role"
         class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-        [(ngModel)]="entity.role">
+        [(ngModel)]="user.role">
         <option>Admin</option>
         <option>Editor</option>
         <option>Guest</option>
+      </select>
+    </div>
+
+    <div class="mb-6">
+      <label for="gender" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select a Gender</label>
+      <select id="gender" name="gender"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        [(ngModel)]="user.gender">
+        <option>Male</option>
+        <option>Female</option>
+        <option>None</option>
+        <option>Unkown</option>
       </select>
     </div>
 

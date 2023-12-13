@@ -1,35 +1,42 @@
 <div class="playlistEdit">
+    <form #playlistEditForm="ngForm" name="form" (ngSubmit)="playlistEditForm.form.valid && savePlaylist()" novalidate>
 
 
-    <form #playlistEditForm="ngForm" name="form" (ngSubmit)="playlistEditForm.form.valid && onSubmit(entity)"
-        novalidate>
 
         <div class="mb-6">
-            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Playlist
-                Name</label>
-            <input type="text" id="name" name="name"
+            <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Playlist
+                Title</label>
+            <input type="text" id="title" name="title"
                 class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-                [(ngModel)]="entity.name" placeholder="Name of playlist" required>
+                [(ngModel)]="playlist.title" placeholder="Title of playlist" required>
+        </div>
+
+        <div class="mb-6">
+            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Playlist
+                Description</label>
+            <input type="text" id="description" name="description"
+                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                [(ngModel)]="playlist.description" placeholder="Description of playlist" required>
         </div>
 
 
         <div class="mb-6">
-            <label for="genre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select a Genre
-                for the playlist</label>
+            <label for="genre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select a Genre for
+                the playlist</label>
             <select id="genre" name="genre"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                [(ngModel)]="entity.genre">
+                [(ngModel)]="playlist.genre" required>
                 <option *ngFor="let genre of selectedGenres" [value]="genre">{{ genre }}</option>
             </select>
         </div>
 
 
         <div class="mb-6">
-            <label for="publicStatus" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status
-            </label>
+            <label for="publicStatus"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
             <select id="publicStatus" name="publicStatus"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                [(ngModel)]="selectedPublicStatus">
+                [(ngModel)]="playlist.publicStatus" required>
                 <option *ngFor="let status of selectedPublicStatus" [value]="status">{{ status }}</option>
             </select>
         </div>

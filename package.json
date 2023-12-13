@@ -24,6 +24,7 @@
     "@nestjs/jwt": "^10.2.0",
     "@nestjs/mongoose": "^10.0.2",
     "@nestjs/platform-express": "^10.0.2",
+    "@nestjs/swagger": "^7.1.16",
     "@nx/angular": "17.1.2",
     "axios": "^1.0.0",
     "class-transformer": "^0.5.1",

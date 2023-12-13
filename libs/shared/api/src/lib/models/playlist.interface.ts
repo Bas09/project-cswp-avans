@@ -1,5 +1,5 @@
-import { IEntity } from 'libs/frontend/common/src/lib/entity/entity.model';
 import { Id } from './id.type';
+import { IUser } from './user.interface';
 
 export enum Genre {
   Pop = 'pop',
@@ -21,17 +21,18 @@ export enum PublicStatus {
   Default = 'Default',
 }
 
-export interface IPlaylistInfo {
-  name: string;
+export interface IPlaylist {
+  _id: Id;
+  title: string;
+  description: string;
   genre: Genre;
   publicStatus: PublicStatus;
+  // userId: Id;
+  // songs: ISong[] | null;
 }
 
-export interface IPlaylist extends IEntity, IPlaylistInfo {
-  _id: Id;
-  dateCreated: Date;
-}
+export type ICreatePlaylist = Partial<Pick<IPlaylist, '_id'>> &
+  Pick<IPlaylist, 'title' | 'description' | 'genre' | 'publicStatus'>;
 
-export type ICreatePlaylist = IPlaylistInfo;
-export type IUpdatePlaylist = Partial<Omit<IPlaylist, 'id' | 'dateCreated'>>;
+export type IUpdatePlaylist = Partial<Omit<IPlaylist, '_id'>>;
 export type IUpsertPlaylist = IPlaylist;

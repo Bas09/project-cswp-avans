@@ -1,0 +1,56 @@
+<div class="songEdit">
+
+    <form #songEditForm="ngForm" name="form" (ngSubmit)="songEditForm.form.valid && saveSong()" novalidate>
+
+        <div class="mb-6">
+            <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+            <input type="text" id="title" name="title"
+                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                [(ngModel)]="song.title" placeholder="Song Title" required>
+        </div>
+
+        <div class="mb-6">
+            <label for="duration" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Duration</label>
+            <input type="text" id="duration" name="duration"
+                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                [(ngModel)]="song.duration" placeholder="Song Duration" required>
+        </div>
+
+
+        <div class="mb-6">
+            <label for="genre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select a
+                Genre</label>
+            <select id="genre" name="genre"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+                [(ngModel)]="song.genre">
+                <option value="pop">Pop</option>
+                <option value="rock">Rock</option>
+                <option value="hiphop">Hip Hop</option>
+                <option value="jazz">Jazz</option>
+                <option value="country">Country</option>
+                <option value="electronic-dance">Electronic Dance</option>
+                <option value="rnb">R&B</option>
+                <option value="classical">Classical</option>
+                <option value="reggae">Reggae</option>
+                <option value="metal">Metal</option>
+                <option value="Default">Default</option>
+            </select>
+        </div>
+
+
+        <div class="row justify-content-end">
+            <div class="col-6">
+                <button type="submit"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Save
+                </button>
+
+                <button type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                    routerLink="/songs">
+                    Cancel
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,8 +1,11 @@
 import { Module } from '@nestjs/common';
-
-import { UsersModule } from '@avans-project-cswp/backend/user';
+import {
+  UsersModule,
+  PlaylistModule,
+  SongModule,
+  ArtistModule,
+} from '@avans-project-cswp/backend/features';
 import { AuthModule } from '@avans-project-cswp/backend/auth';
-
 import { MongooseModule } from '@nestjs/mongoose';
 import { environment } from '@avans-project-cswp/shared/util-env';
 import { Logger } from '@nestjs/common';
@@ -11,10 +14,12 @@ import { Logger } from '@nestjs/common';
   imports: [
     UsersModule,
     AuthModule,
+    PlaylistModule,
+    SongModule,
+    ArtistModule,
     MongooseModule.forRoot(environment.MONGO_DB_CONNECTION_STRING, {
       connectionFactory: (connection) => {
         connection.on('connected', () => {
-          // console.log('is connected');
           Logger.verbose(
             `Mongoose db connected to ${environment.MONGO_DB_CONNECTION_STRING}`
           );
@@ -23,7 +28,6 @@ import { Logger } from '@nestjs/common';
         return connection;
       },
     }),
-    UsersModule,
   ],
   controllers: [],
   providers: [],

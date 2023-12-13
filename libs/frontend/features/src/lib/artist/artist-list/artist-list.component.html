@@ -1,63 +1,52 @@
-<div class="artistList">
-
-
+<div class="component list">
     <div class="flex justify-end">
         <button type="button"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-            routerLink="new/edit">Create
-            New Artist</button>
+            routerLink="new/edit">Create New Artist</button>
     </div>
-
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                    <th scope="col" class="px-6 py-3">
-                        ID
-                    </th>
+
                     <th scope="col" class="px-6 py-3">
                         Name
                     </th>
+
                     <th scope="col" class="px-6 py-3">
-                        Country
+                        Nationality
                     </th>
 
                     <th scope="col" class="px-6 py-3">
-                        Genre
+                        Artist Details
                     </th>
-
+                    <th scope="col" class="px-6 py-3">
+                        Artist Genre
+                    </th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
                     *ngFor="let artist of artists">
-                    <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ artist.id }}
-                    </th>
+
                     <td class="px-6 py-4">
                         {{ artist.name }}
                     </td>
 
                     <td class="px-6 py-4">
-                        {{ artist.country }}
+                        {{ artist.nationality }}
                     </td>
-
                     <td class="px-6 py-4">
                         {{ artist.genre }}
                     </td>
 
                     <td class="px-6 py-4">
-                        <a routerLink="{{ artist.id }}"
-                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Details of Artist</a>
+                        <a routerLink="{{ artist._id }}"
+                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
                     </td>
-                    <!-- <td class="px-6 py-4">
-              <a routerLink="/users" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</a>
-  
-            </td> -->
                 </tr>
-
             </tbody>
         </table>
     </div>

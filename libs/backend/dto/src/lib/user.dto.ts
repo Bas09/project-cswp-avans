@@ -8,16 +8,11 @@ import {
   UserRole,
   UserGender,
 } from '@avans-project-cswp/shared/api';
-// import { Meal } from '@avans-project-cswp/backend/features';
 
 export class CreateUserDto implements IUserRegistration {
   @IsString()
   @IsNotEmpty()
-  firstName!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  lastName!: string;
+  name!: string;
 
   @IsString()
   @IsNotEmpty()
@@ -33,23 +28,7 @@ export class UpsertUserDto implements IUpsertUser {
 
   @IsString()
   @IsNotEmpty()
-  firstName!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  lastName!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  password!: string;
-
-  @IsString()
-  @IsNotEmpty()
-  emailAddress!: string;
-
-  //   @IsString()
-  //   @IsNotEmpty()
-  //   meals: Meal[] = [];
+  name!: string;
 
   @IsString()
   @IsNotEmpty()
@@ -58,13 +37,22 @@ export class UpsertUserDto implements IUpsertUser {
   @IsString()
   @IsNotEmpty()
   gender: UserGender = UserGender.Unknown;
+
+  @IsString()
+  @IsNotEmpty()
+  emailAddress!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  password!: string;
 }
 
 export class UpdateUserDto implements IUpdateUser {
-  _id?: string | undefined;
+  @IsString()
+  @IsOptional()
+  name!: string;
 
   @IsString()
   @IsOptional()
-  firstName!: string;
-  lastName?: string;
+  emailAddress?: string;
 }

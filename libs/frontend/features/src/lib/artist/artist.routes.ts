@@ -16,5 +16,4 @@ export const artistRoutes: Routes = [
     pathMatch: 'full',
     component: ArtistEditComponent,
   },
-  // for playlist
 ];

@@ -1,4 +1,4 @@
-import { IEntity } from 'libs/frontend/common/src/lib/entity/entity.model';
+// import { IEntity } from 'libs/frontend/common/src/lib/entity/entity.model';
 import { IUserRegistration } from './auth.interface';
 import { Id } from './id.type';
 
@@ -16,11 +16,13 @@ export enum UserGender {
   Unknown = 'Unknown',
 }
 
-export interface IUserIdentity extends IEntity {
-  firstName: string;
-  lastName: string;
-  emailAddress: string;
+export interface IUser {
+  _id: Id;
+  name: string;
   role: UserRole;
+  gender: UserGender;
+  emailAddress: string;
+  password: string;
   token?: string;
 }
 
@@ -30,11 +32,6 @@ export interface IUserInfo extends IUserRegistration {
   gender: UserGender;
 }
 
-export interface IUser extends IUserInfo {}
-
-export type ICreateUser = Pick<
-  IUser,
-  'firstName' | 'lastName' | 'password' | 'emailAddress'
->;
+export type ICreateUser = Pick<IUser, 'name' | 'password' | 'emailAddress'>;
 export type IUpdateUser = Partial<Omit<IUser, 'id'>>;
 export type IUpsertUser = IUser;

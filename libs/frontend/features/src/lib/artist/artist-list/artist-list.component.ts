@@ -1,20 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { Artist } from '../artist.model';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ArtistService } from '../artist.service';
+import { IArtist } from '@avans-project-cswp/shared/api';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'avans-project-cswp-artist-list',
   templateUrl: './artist-list.component.html',
-
-  styles: [],
+  styleUrls: [],
 })
-export class ArtistListComponent implements OnInit {
-  artists: Artist[] = [];
+export class ArtistListComponent implements OnInit, OnDestroy {
+  artists: IArtist[] | null = null;
+  subscription: Subscription | undefined = undefined;
 
   constructor(private artistService: ArtistService) {}
 
   ngOnInit(): void {
-    this.artists = this.artistService.getArtists();
-    console.log('Artists:', this.artists);
+    this.subscription = this.artistService.list().subscribe((results) => {
+      console.log(`results: ${results}`);
+      this.artists = results;
+    });
+  }
+
+  ngOnDestroy(): void {
+    if (this.subscription) this.subscription.unsubscribe();
   }
 }

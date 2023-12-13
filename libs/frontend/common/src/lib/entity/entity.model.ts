@@ -1,5 +1,5 @@
-import { Id } from '@avans-project-cswp/shared/api';
+// import { Id } from '@avans-project-cswp/shared/api';
 
-export interface IEntity {
-  readonly _id: Id;
-}
+// export interface IEntity {
+//   readonly _id: Id;
+// }

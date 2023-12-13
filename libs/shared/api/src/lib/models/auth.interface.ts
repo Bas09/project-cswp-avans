@@ -10,8 +10,7 @@ export interface IUserCredentials {
  * User information required for registration
  */
 export interface IUserRegistration extends IUserCredentials {
-  firstName: string;
-  lastName: string;
+  name: string;
 }
 
 export interface IToken {
