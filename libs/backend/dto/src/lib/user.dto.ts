@@ -9,10 +9,20 @@ import {
   UserGender,
 } from '@avans-project-cswp/shared/api';
 
-export class CreateUserDto implements IUserRegistration {
+export class CreateUserDto implements ICreateUser {
+  _id!: Id;
+
   @IsString()
   @IsNotEmpty()
   name!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  role: UserRole = UserRole.Unknown;
+
+  @IsString()
+  @IsNotEmpty()
+  gender!: UserGender;
 
   @IsString()
   @IsNotEmpty()

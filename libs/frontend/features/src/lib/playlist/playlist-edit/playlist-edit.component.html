@@ -1,5 +1,6 @@
 <div class="playlistEdit">
-    <form #playlistEditForm="ngForm" name="form" (ngSubmit)="playlistEditForm.form.valid && savePlaylist()" novalidate>
+    <form class="max-w-lg mx-auto" #playlistEditForm="ngForm" name="form"
+        (ngSubmit)="playlistEditForm.form.valid && savePlaylist()" novalidate>
 
 
 
@@ -34,12 +35,43 @@
         <div class="mb-6">
             <label for="publicStatus"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-            <select id="publicStatus" name="publicStatus"
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                [(ngModel)]="playlist.publicStatus" required>
-                <option *ngFor="let status of selectedPublicStatus" [value]="status">{{ status }}</option>
-            </select>
+
+            <div class="relative">
+                <select id="publicStatus" name="publicStatus"
+                    class="appearance-none bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pl-8 pr-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                    [(ngModel)]="playlist.publicStatus" required>
+                    <option *ngFor="let status of selectedPublicStatus" [value]="status">{{ status }}</option>
+                </select>
+                <div
+                    class="pointer-events-none absolute inset-y-0 left-0 flex items-center px-2.5 text-gray-700 dark:text-white">
+                    <!-- You can replace the arrow with a custom icon if you prefer -->
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </div>
+            </div>
         </div>
+
+
+        <!-- <label for="songs" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select
+            an option</label>
+        <select multiple id="songs" name="songs"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [(ngModel)]="songs" required>
+            <option *ngFor="let song of songs" [value]="song">{{ song.title }}</option>
+
+        </select> -->
+
+        <label for="songs" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select songs</label>
+        <select multiple id="songs" name="songs"
+            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+            [(ngModel)]="selectedSongs" required>
+            <option *ngFor="let song of songs" [value]="song._id" [selected]="isSongSelected(song._id)">
+                {{ song.title }}
+            </option>
+        </select>
+
 
         <div class="row justify-content-end">
             <div class="col-6">
@@ -55,5 +87,7 @@
                 </button>
             </div>
         </div>
+
+
     </form>
 </div>

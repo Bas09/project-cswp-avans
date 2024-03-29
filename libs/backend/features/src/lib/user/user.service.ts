@@ -47,29 +47,19 @@ export class UserService {
     return item;
   }
 
-  // async create(user: CreateUserDto): Promise<IUserInfo> {
-  //   this.logger.log(`Create user ${user.name}`);
-  //   const createdItem = await this.userModel.create(user);
-  //   return createdItem;
-  // }
-
-  async create(
-    user: Pick<IUser, 'name' | 'emailAddress' | 'password'>
-  ): Promise<IUser> {
+  async create(user: CreateUserDto): Promise<IUser> {
     Logger.log('create', this.TAG);
-    var id = new mongoose.Types.ObjectId();
+    const id = new mongoose.Types.ObjectId();
 
-    const newUser: IUser = {
+    const newUser: ICreateUser = {
       ...user,
       _id: id.toString(),
-      role: UserRole.Unknown,
-      gender: UserGender.Unknown,
     };
 
     Logger.log(newUser, 'newUser');
 
-    const createdUser = await this.userModel.create(newUser);
-    return createdUser;
+    const CreatedUser = await this.userModel.create(newUser);
+    return CreatedUser;
   }
 
   // async update(_id: string, user: UpdateUserDto): Promise<IUserInfo | null> {
@@ -112,6 +102,9 @@ export class UserService {
       name: 'John Doe',
       password: 'securepassword',
       emailAddress: 'john.doe@example.com',
+      _id: '', // Add _id property
+      role: UserRole.Unknown, // Add role property
+      gender: UserGender.Unknown, // Add gender property
     };
 
     try {

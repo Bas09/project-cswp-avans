@@ -1,4 +1,5 @@
 import { Id } from './id.type';
+import { ISong } from './song.interface';
 import { IUser } from './user.interface';
 
 export enum Genre {
@@ -27,12 +28,13 @@ export interface IPlaylist {
   description: string;
   genre: Genre;
   publicStatus: PublicStatus;
+  songs?: ISong[] | null;
   // userId: Id;
   // songs: ISong[] | null;
 }
 
 export type ICreatePlaylist = Partial<Pick<IPlaylist, '_id'>> &
-  Pick<IPlaylist, 'title' | 'description' | 'genre' | 'publicStatus'>;
+  Pick<IPlaylist, 'title' | 'description' | 'genre' | 'publicStatus' | 'songs'>;
 
 export type IUpdatePlaylist = Partial<Omit<IPlaylist, '_id'>>;
 export type IUpsertPlaylist = IPlaylist;

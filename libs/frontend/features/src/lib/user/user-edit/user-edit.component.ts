@@ -15,6 +15,8 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { Types } from 'mongoose';
 import { log } from 'console';
+//import { AuthService } from '@avans-project-cswp/backend/auth';
+import { from } from 'rxjs';
 
 @Component({
   selector: 'avans-project-cswp-user-edit',
@@ -39,7 +41,8 @@ export class UserEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService
-  ) {}
+  ) //  private authService: AuthService
+  {}
 
   ngOnInit(): void {
     const userId = this.route.snapshot.paramMap.get('id');
@@ -70,9 +73,9 @@ export class UserEditComponent implements OnInit {
     if (this.isEditing) {
       this.updateUser();
     } else if (this.isLogin) {
-      this.login();
+      //this.login();
     } else {
-      this.createUser();
+      //this.createUser();
     }
   }
   updateUser() {
@@ -140,7 +143,8 @@ export class UserEditComponent implements OnInit {
       gender: this.user.gender,
     };
     console.log('New user', newUser);
-    this.userService.register(newUser).subscribe(() => {
+
+    from(this.userService.register(newUser)).subscribe(() => {
       this.router.navigate(['/users']);
     });
   }

@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaylistService } from '../playlist.service';
-import { IPlaylist, Genre, PublicStatus } from '@avans-project-cswp/shared/api';
+import {
+  IPlaylist,
+  Genre,
+  PublicStatus,
+  ISong,
+} from '@avans-project-cswp/shared/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Types } from 'mongoose';
+import { SongService } from '../../song/song.service';
 
 @Component({
   selector: 'avans-project-cswp-playlist-edit',
@@ -14,6 +20,11 @@ import { Types } from 'mongoose';
 export class PlaylistEditComponent implements OnInit {
   playlist: IPlaylist = {} as IPlaylist;
   isEditing = false;
+  songs: ISong[] | null = null;
+  searchTerm: string = '';
+  private subscription: Subscription | undefined;
+
+  selectedSongs: string[] = [];
 
   title = '';
   genre = '';
@@ -26,23 +37,33 @@ export class PlaylistEditComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private playlistService: PlaylistService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private songService: SongService
   ) {}
 
   ngOnInit(): void {
     const playlistId = this.route.snapshot.paramMap.get('id');
     console.log('ngOnInit', playlistId);
 
-    if (playlistId && playlistId != 'new') {
+    if (playlistId && playlistId !== 'new') {
       this.isEditing = true;
       console.log('playlistId found', this.isEditing);
       this.playlistService.read(playlistId).subscribe((playlist: IPlaylist) => {
         this.playlist = playlist;
-        (this.title = playlist.title),
-          (this.genre = playlist.genre),
-          (this.publicStatus = playlist.publicStatus);
+        this.title = playlist.title;
+        this.genre = playlist.genre;
+        this.publicStatus = playlist.publicStatus;
       });
     }
+
+    this.subscription = this.songService.list().subscribe((results) => {
+      console.log('results: ', results);
+      this.songs = results;
+    });
+  }
+
+  isSongSelected(songId: string): boolean {
+    return this.selectedSongs.includes(songId);
   }
 
   savePlaylist() {
@@ -65,6 +86,7 @@ export class PlaylistEditComponent implements OnInit {
       description: this.playlist.description,
       genre: this.playlist.genre,
       publicStatus: this.playlist.publicStatus,
+      songs: this.playlist.songs,
       // userId: this.playlist.userId,
     };
     console.log('After Update', updatedPlaylist);
@@ -86,6 +108,8 @@ export class PlaylistEditComponent implements OnInit {
       description: this.playlist.description,
       genre: this.playlist.genre,
       publicStatus: this.playlist.publicStatus,
+
+      // Convert selectedSongs to an array of ISong objects
       // userId: this.playlist.userId,
       // Add other properties as needed
     };

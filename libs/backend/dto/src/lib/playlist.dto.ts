@@ -1,6 +1,7 @@
 import {
   Genre,
   ICreatePlaylist,
+  ISong,
   IUpdatePlaylist,
   IUpsertPlaylist,
   IUser,
@@ -31,6 +32,8 @@ export class CreatePlaylistDto implements ICreatePlaylist {
   @IsEnum(PublicStatus)
   @IsNotEmpty()
   publicStatus!: PublicStatus;
+
+  songs!: ISong[] | null;
 }
 
 export class UpsertPlaylistDto implements IUpsertPlaylist {
@@ -53,6 +56,8 @@ export class UpsertPlaylistDto implements IUpsertPlaylist {
   userId!: string;
 
   _id!: Id;
+
+  songs!: ISong[] | null;
 }
 
 export class UpdatePlaylistDto implements IUpdatePlaylist {

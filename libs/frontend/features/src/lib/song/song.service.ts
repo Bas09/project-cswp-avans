@@ -89,6 +89,19 @@ export class SongService {
       );
   }
 
+  public search(searchTerm: string, options?: any): Observable<ISong[]> {
+    return this.http
+      .get<ApiResponse<ISong[]>>(`${this.endpoint}/search?term=${searchTerm}`, {
+        ...options,
+        ...httpOptions,
+      })
+      .pipe(
+        map((response: any) => response.results as ISong[]),
+        tap(console.log),
+        catchError(this.handleError)
+      );
+  }
+
   public handleError(error: HttpErrorResponse): Observable<any> {
     return throwError(() => new Error(error.message));
   }

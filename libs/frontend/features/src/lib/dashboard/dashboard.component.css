@@ -1,0 +1,10 @@
+.song-container {
+  display: flex;
+  overflow-x: auto; /* Add horizontal scrollbar when necessary */
+  max-width: 100%; /* Adjust the maximum width as needed */
+}
+
+.songs {
+  flex: 0 0 auto; /* Don't grow, don't shrink, use auto width */
+  margin-right: 10px; /* Adjust margin as needed */
+}

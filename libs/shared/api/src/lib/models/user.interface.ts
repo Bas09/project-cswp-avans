@@ -32,6 +32,9 @@ export interface IUserInfo extends IUserRegistration {
   gender: UserGender;
 }
 
-export type ICreateUser = Pick<IUser, 'name' | 'password' | 'emailAddress'>;
+export type ICreateUser = Pick<
+  IUser,
+  '_id' | 'name' | 'emailAddress' | 'gender' | 'password' | 'role'
+>;
 export type IUpdateUser = Partial<Omit<IUser, 'id'>>;
 export type IUpsertUser = IUser;

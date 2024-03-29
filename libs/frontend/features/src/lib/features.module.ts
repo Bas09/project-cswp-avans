@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AboutComponent } from './about/about.component';
 
@@ -33,8 +34,15 @@ import { ArtistListComponent } from './artist/artist-list/artist-list.component'
 import { ArtistDetailComponent } from './artist/artist-detail/artist-detail.component';
 import { ArtistEditComponent } from './artist/artist-edit/artist-edit.component';
 import { ArtistService } from './artist/artist.service';
+
 @NgModule({
-  imports: [CommonModule, HttpClientModule, RouterLink, FormsModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    RouterLink,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   declarations: [
     AboutComponent,
     UserDetailComponent,

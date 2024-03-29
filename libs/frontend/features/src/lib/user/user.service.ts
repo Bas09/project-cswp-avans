@@ -5,6 +5,7 @@ import { Observable, catchError, map, of, tap, throwError } from 'rxjs';
 // import { EntityService } from '../abstractions/services/entity.service';
 import {
   ApiResponse,
+  ICreateUser,
   IUser,
   IUserCredentials,
 } from '@avans-project-cswp/shared/api';
@@ -48,7 +49,8 @@ export class UserService {
       );
   }
 
-  public createUser(user: IUser, options?: any): Observable<boolean> {
+  public createUser(user: ICreateUser, options?: any): Observable<boolean> {
+    console.log('user given to createUser() ', user);
     return this.http
       .post<ApiResponse<IUser>>(`${this.endpoint}`, user, {
         ...options,

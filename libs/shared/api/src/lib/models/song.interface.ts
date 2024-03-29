@@ -19,6 +19,7 @@ export interface ISong {
   title: string;
   duration: string;
   genre: SongGenre;
+
   //artist: IArtist
 }
 

@@ -1,0 +1,4 @@
+C:\Program Files\MongoDB\Server\7.0\bin ---> start mongo
+C:\Mongo\mongosh-2.0.2-win32-x64\bin ---->start mongosh
+
+nx run-many --target=serve --all
