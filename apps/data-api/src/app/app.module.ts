@@ -5,7 +5,7 @@ import {
   SongModule,
   ArtistModule,
 } from '@avans-project-cswp/backend/features';
-import { AuthModule } from '@avans-project-cswp/backend/auth';
+//import { AuthModule } from '@avans-project-cswp/backend/auth';
 import { MongooseModule } from '@nestjs/mongoose';
 import { environment } from '@avans-project-cswp/shared/util-env';
 import { Logger } from '@nestjs/common';
@@ -13,7 +13,7 @@ import { Logger } from '@nestjs/common';
 @Module({
   imports: [
     UsersModule,
-    AuthModule,
+    //AuthModule,
     PlaylistModule,
     SongModule,
     ArtistModule,

@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../user/user.service';
 import { IUser } from '@avans-project-cswp/shared/api';
 import { Router } from '@angular/router';
-//import { AuthService } from '@avans-project-cswp/backend/auth';
+import { AuthService } from '@avans-project-cswp/backend/auth';
+
 import { from } from 'rxjs';
 
 @Component({
@@ -17,10 +18,9 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private userService: UserService,
-    private router: Router
-  ) // private authService: AuthService
-  {}
-
+    private router: Router,
+    private authService: AuthService // Fix the parameter name to match the imported class
+  ) {}
   ngOnInit(): void {}
 
   login() {

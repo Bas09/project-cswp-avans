@@ -40,9 +40,8 @@ export class UserEditComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private userService: UserService
-  ) //  private authService: AuthService
-  {}
+    private userService: UserService //  private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     const userId = this.route.snapshot.paramMap.get('id');
