@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IUser } from '@avans-project-cswp/shared/api';
+//import { CheckAuthService } from './checkAuth.service';
+
+//import { AuthService } from '@avans-project-cswp/backend/auth';
 
 @Component({
   selector: 'avans-project-cswp-header',
@@ -9,7 +12,7 @@ import { IUser } from '@avans-project-cswp/shared/api';
 })
 export class HeaderComponent implements OnInit {
   user: IUser | null | undefined;
-  loginString: string = '';
+  logginStatus: boolean = false;
 
   constructor(private router: Router) {}
 
@@ -18,16 +21,19 @@ export class HeaderComponent implements OnInit {
     this.user = userString ? JSON.parse(userString) : null;
 
     if (localStorage.getItem('user')) {
-      this.loginString = 'Logout';
-    } else {
-      this.loginString = 'Login';
+      this.logginStatus = true;
     }
   }
 
   logout() {
     console.log('Logout clicked');
     localStorage.removeItem('user');
-    this.loginString = 'Login';
+    this.logginStatus = false;
+    this.router.navigate(['/']);
+  }
+
+  login() {
     this.router.navigate(['/login']);
+    this.logginStatus = true;
   }
 }

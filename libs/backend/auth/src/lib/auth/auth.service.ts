@@ -20,6 +20,7 @@ import { BehaviorSubject } from 'rxjs';
 export class AuthService {
   public currentUser$ = new BehaviorSubject<IUser | null>(null);
   private readonly CURRENT_USER = 'currentUser';
+  isLoggedIn = false;
 
   constructor(
     @InjectModel(UserModel.name) private userModel: Model<UserDocument>,
@@ -56,12 +57,14 @@ export class AuthService {
             emailAddress: user.emailAddress,
             token: this.jwtService.sign(payload),
           };
+          this.isLoggedIn = true;
         } else {
           const errMsg = 'Email not found or password invalid';
           throw new UnauthorizedException(errMsg);
         }
       })
       .catch((error) => {
+        this.isLoggedIn = false;
         return error;
       });
   }

@@ -9,19 +9,47 @@ import { Subscription } from 'rxjs';
   styleUrls: [],
 })
 export class SongListComponent implements OnInit, OnDestroy {
-  songs: ISong[] | null = null;
+  songs?: ISong[] | null = null;
   subscription: Subscription | undefined = undefined;
+  user = JSON.parse(localStorage.getItem('user') as string);
+  userId = this.user._id;
+  showAllSongs = true;
 
   constructor(private songService: SongService) {}
 
   ngOnInit(): void {
-    this.subscription = this.songService.list().subscribe((results) => {
-      console.log(`results: ${results}`);
-      this.songs = results;
-    });
+    this.loadSongs();
   }
 
   ngOnDestroy(): void {
     if (this.subscription) this.subscription.unsubscribe();
   }
+
+  loadSongs(): void {
+    this.subscription = this.songService.list().subscribe((results) => {
+      console.log(`results: ${results}`);
+      if (this.showAllSongs) {
+        // Show all playlists
+        this.songs = results;
+      } else {
+        // Show only user's playlists
+        this.songs = results?.filter(
+          (playlist) => playlist.userId === this.userId
+        );
+      }
+    });
+  }
+
+  toggleView(): void {
+    this.showAllSongs = !this.showAllSongs;
+    this.loadSongs();
+  }
+
+  // ngOnInit(): void {
+  //   this.subscription = this.songService.list().subscribe((results) => {
+  //     console.log(`results: ${results}`);
+  //     this.songs = results;
+  //   });
+
+  // }
 }

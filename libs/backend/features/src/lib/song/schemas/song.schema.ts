@@ -31,6 +31,12 @@ export class Song implements ISong {
   @IsEnum(SongGenre)
   genre!: SongGenre;
 
+  @Prop({
+    required: true,
+    type: String,
+  })
+  userId!: string;
+
   // @Prop({
   //   required: true,
   //   type: MongooseSchema.Types.ObjectId,

@@ -13,6 +13,7 @@ import { Types } from 'mongoose';
 export class SongEditComponent implements OnInit {
   song: ISong = {} as ISong;
   isEditing = false; // Add a flag to track if editing or creating
+  userId: string = '';
 
   title = '';
   duration = '';
@@ -26,6 +27,11 @@ export class SongEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    let user = JSON.parse(localStorage.getItem('user') as string);
+    this.userId = user._id;
+
+    console.log('userId', this.userId);
+
     const songId = this.route.snapshot.paramMap.get('id');
 
     if (songId && songId != 'new') {
@@ -60,6 +66,7 @@ export class SongEditComponent implements OnInit {
       title: this.song.title,
       duration: this.song.duration,
       genre: this.song.genre,
+      userId: this.userId,
     };
 
     console.log('After Update', updatedSong);
@@ -77,6 +84,7 @@ export class SongEditComponent implements OnInit {
       title: this.song.title,
       duration: this.song.duration,
       genre: this.song.genre,
+      userId: this.userId,
     };
     console.log('New song', newSong);
 

@@ -22,9 +22,10 @@ export class PlaylistEditComponent implements OnInit {
   isEditing = false;
   songs: ISong[] | null = null;
   searchTerm: string = '';
+  userId: string = '';
   private subscription: Subscription | undefined;
 
-  selectedSongs: string[] = [];
+  selectedSongs: ISong[] = [];
 
   title = '';
   genre = '';
@@ -42,6 +43,11 @@ export class PlaylistEditComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    let user = JSON.parse(localStorage.getItem('user') as string);
+    this.userId = user._id;
+
+    console.log('userId', this.userId);
+
     const playlistId = this.route.snapshot.paramMap.get('id');
     console.log('ngOnInit', playlistId);
 
@@ -63,7 +69,7 @@ export class PlaylistEditComponent implements OnInit {
   }
 
   isSongSelected(songId: string): boolean {
-    return this.selectedSongs.includes(songId);
+    return this.selectedSongs.some((song) => song._id === songId);
   }
 
   savePlaylist() {
@@ -87,6 +93,7 @@ export class PlaylistEditComponent implements OnInit {
       genre: this.playlist.genre,
       publicStatus: this.playlist.publicStatus,
       songs: this.playlist.songs,
+      userId: this.userId,
       // userId: this.playlist.userId,
     };
     console.log('After Update', updatedPlaylist);
@@ -108,6 +115,8 @@ export class PlaylistEditComponent implements OnInit {
       description: this.playlist.description,
       genre: this.playlist.genre,
       publicStatus: this.playlist.publicStatus,
+      userId: this.userId,
+      songs: this.selectedSongs,
 
       // Convert selectedSongs to an array of ISong objects
       // userId: this.playlist.userId,

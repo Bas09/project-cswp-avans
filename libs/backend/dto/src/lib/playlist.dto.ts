@@ -33,6 +33,10 @@ export class CreatePlaylistDto implements ICreatePlaylist {
   @IsNotEmpty()
   publicStatus!: PublicStatus;
 
+  @IsString()
+  @IsNotEmpty()
+  userId!: string;
+
   songs!: ISong[] | null;
 }
 

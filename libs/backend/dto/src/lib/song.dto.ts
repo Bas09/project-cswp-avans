@@ -8,6 +8,8 @@ import {
 } from '@avans-project-cswp/shared/api';
 
 export class CreateSongDto implements ICreateSong {
+  _id?: string | undefined;
+
   @IsString()
   @IsNotEmpty()
   title!: string;
@@ -19,6 +21,10 @@ export class CreateSongDto implements ICreateSong {
   @IsEnum(SongGenre)
   @IsNotEmpty()
   genre!: SongGenre;
+
+  @IsString()
+  @IsNotEmpty()
+  userId!: string;
 }
 
 export class UpsertSongDto implements IUpsertSong {
@@ -35,6 +41,10 @@ export class UpsertSongDto implements IUpsertSong {
   @IsEnum(SongGenre)
   @IsNotEmpty()
   genre!: SongGenre;
+
+  @IsString()
+  @IsNotEmpty()
+  userId!: string;
 }
 
 export class UpdateSongDto implements IUpdateSong {

@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   user: IUser = {} as IUser;
   email = '';
   password = '';
+  logginStatus: boolean = false;
 
   constructor(
     private userService: UserService,
@@ -30,13 +31,13 @@ export class LoginComponent implements OnInit {
       password: this.password,
     };
     console.log('Login credentials', loginCredentials);
-
     this.userService.login(loginCredentials).subscribe(
       (user: IUser | null) => {
         if (user) {
           console.log('User logged in', user);
           localStorage.setItem('user', JSON.stringify(user));
           this.router.navigate(['/']);
+          this.logginStatus = true;
         } else {
           console.log('Error logging in');
         }
@@ -45,5 +46,9 @@ export class LoginComponent implements OnInit {
         console.error('Error logging in', error);
       }
     );
+  }
+
+  getLogginStatus() {
+    return this.logginStatus;
   }
 }

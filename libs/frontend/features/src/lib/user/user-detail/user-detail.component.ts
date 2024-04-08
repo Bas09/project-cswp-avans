@@ -66,17 +66,3 @@ export class UserDetailComponent implements OnInit, OnDestroy {
     this.router.navigate(['/users']);
   }
 }
-
-// @Component({
-//   selector: 'avans-project-cswp-user-detail',
-//   templateUrl: './user-detail.component.html',
-//   styles: [],
-//   standalone: true,
-//   imports: [CommonModule, HttpClientModule, RouterModule],
-//   providers: [UserService],
-// })
-// export class UserDetailComponent extends DetailComponent<IUser> {
-//   constructor(userService: UserService, route: ActivatedRoute, router: Router) {
-//     super(userService, route, router);
-//   }
-// }

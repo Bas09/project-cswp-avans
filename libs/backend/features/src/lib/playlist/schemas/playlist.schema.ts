@@ -48,12 +48,11 @@ export class Playlist implements IPlaylist {
   })
   songs?: ISong[] | null; // Update the type to allow undefined values
 
-  // @Prop({
-  //   required: true,
-  //   type: MongooseSchema.Types.ObjectId,
-  //   ref: 'User', // Assuming your User model is named 'User'
-  // })
-  // userId!: string;
+  @Prop({
+    required: true,
+    type: String,
+  })
+  userId!: string;
 }
 
 export const PlaylistSchema = SchemaFactory.createForClass(Playlist);

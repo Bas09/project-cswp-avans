@@ -29,12 +29,15 @@ export interface IPlaylist {
   genre: Genre;
   publicStatus: PublicStatus;
   songs?: ISong[] | null;
-  // userId: Id;
+  userId: Id;
   // songs: ISong[] | null;
 }
 
 export type ICreatePlaylist = Partial<Pick<IPlaylist, '_id'>> &
-  Pick<IPlaylist, 'title' | 'description' | 'genre' | 'publicStatus' | 'songs'>;
+  Pick<
+    IPlaylist,
+    'title' | 'description' | 'genre' | 'publicStatus' | 'songs'
+  > & { userId: IUser['_id'] };
 
 export type IUpdatePlaylist = Partial<Omit<IPlaylist, '_id'>>;
 export type IUpsertPlaylist = IPlaylist;

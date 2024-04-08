@@ -1,24 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { IUser } from '@avans-project-cswp/shared/api';
-// import { ListComponent } from '../../abstractions/components/list.component';
-import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'avans-project-cswp-user-list',
   templateUrl: './user-list.component.html',
   styleUrls: [],
-
-  // standalone: true,
-  // imports: [CommonModule, HttpClientModule, RouterModule],
 })
 export class UserListComponent implements OnInit, OnDestroy {
   users: IUser[] | null = null;
+  myUser: IUser | null = null;
   subscription: Subscription | undefined = undefined;
+  subscription1: Subscription | undefined = undefined;
+  user = JSON.parse(localStorage.getItem('user') as string);
+  userId = this.user._id;
 
   constructor(private userService: UserService) {}
 
@@ -27,23 +23,14 @@ export class UserListComponent implements OnInit, OnDestroy {
       console.log(`results: ${results}`);
       this.users = results;
     });
+    this.subscription1 = this.userService
+      .read(this.userId)
+      .subscribe((results) => {
+        this.myUser = results;
+      });
   }
 
   ngOnDestroy(): void {
     if (this.subscription) this.subscription.unsubscribe();
   }
 }
-
-// @Component({
-//   selector: 'avans-project-cswp-user-list',
-//   templateUrl: './user-list.component.html',
-//   styles: [],
-//   standalone: true,
-//   imports: [CommonModule, HttpClientModule, RouterModule],
-//   providers: [UserService],
-// })
-// export class UserListComponent extends ListComponent<IUser> {
-//   constructor(userService: UserService) {
-//     super(userService);
-//   }
-// }

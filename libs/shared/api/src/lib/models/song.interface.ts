@@ -1,4 +1,5 @@
 import { Id } from './id.type';
+import { IUser } from './user.interface';
 
 export enum SongGenre {
   Pop = 'pop',
@@ -19,12 +20,13 @@ export interface ISong {
   title: string;
   duration: string;
   genre: SongGenre;
+  userId: Id;
 
   //artist: IArtist
 }
 
 export type ICreateSong = Partial<Pick<ISong, '_id'>> &
-  Pick<ISong, 'title' | 'duration' | 'genre'>;
+  Pick<ISong, 'title' | 'duration' | 'genre'> & { userId: IUser['_id'] };
 
-export type IUpdateSong = Partial<Omit<ISong, 'id'>>;
+export type IUpdateSong = Partial<Omit<ISong, '_id'>>;
 export type IUpsertSong = ISong;
