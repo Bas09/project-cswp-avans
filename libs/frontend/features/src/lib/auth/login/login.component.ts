@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 // import { AuthService } from '@avans-project-cswp/backend/auth';
 
 import { from } from 'rxjs';
+import { log } from 'console';
 
 @Component({
   selector: 'avans-project-cswp-login',
@@ -30,7 +31,7 @@ export class LoginComponent implements OnInit {
     };
     console.log('Login credentials', loginCredentials);
 
-    this.userService.login(this.email, this.password).subscribe(
+    this.userService.login(loginCredentials).subscribe(
       (user: IUser | null) => {
         if (user) {
           console.log('User logged in', user);

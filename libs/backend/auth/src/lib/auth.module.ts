@@ -7,7 +7,7 @@ import {
   UserSchema,
   UsersModule,
 } from '@avans-project-cswp/backend/features';
-import { AuthService } from './auth/auth.service1';
+import { AuthService } from './auth/auth.service';
 
 @Module({
   imports: [
