@@ -9,7 +9,7 @@ import { Subscription, switchMap } from 'rxjs';
 @Component({
   selector: 'avans-project-cswp-user-detail',
   templateUrl: './user-detail.component.html',
-  styles: [],
+  styleUrls: ['./user-detail.component.css'],
 })
 export class UserDetailComponent implements OnInit, OnDestroy {
   users: IUser | null = null;

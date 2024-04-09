@@ -31,6 +31,10 @@ export class CreateUserDto implements ICreateUser {
   @IsString()
   @IsNotEmpty()
   emailAddress!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  imageUrl!: string;
 }
 
 export class UpsertUserDto implements IUpsertUser {
@@ -55,14 +59,34 @@ export class UpsertUserDto implements IUpsertUser {
   @IsString()
   @IsNotEmpty()
   password!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  imageUrl!: string;
 }
 
 export class UpdateUserDto implements IUpdateUser {
   @IsString()
-  @IsOptional()
+  @IsNotEmpty()
   name!: string;
 
   @IsString()
-  @IsOptional()
-  emailAddress?: string;
+  @IsNotEmpty()
+  role: UserRole = UserRole.Unknown;
+
+  @IsString()
+  @IsNotEmpty()
+  gender: UserGender = UserGender.Unknown;
+
+  @IsString()
+  @IsNotEmpty()
+  emailAddress!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  password!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  imageUrl!: string;
 }

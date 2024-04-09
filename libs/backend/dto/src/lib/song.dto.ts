@@ -25,6 +25,10 @@ export class CreateSongDto implements ICreateSong {
   @IsString()
   @IsNotEmpty()
   userId!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  imageUrl!: string;
 }
 
 export class UpsertSongDto implements IUpsertSong {
@@ -45,6 +49,10 @@ export class UpsertSongDto implements IUpsertSong {
   @IsString()
   @IsNotEmpty()
   userId!: string;
+
+  @IsString()
+  @IsNotEmpty()
+  imageUrl!: string;
 }
 
 export class UpdateSongDto implements IUpdateSong {
@@ -59,4 +67,8 @@ export class UpdateSongDto implements IUpdateSong {
   @IsEnum(SongGenre)
   @IsNotEmpty()
   genre?: SongGenre;
+
+  @IsString()
+  @IsNotEmpty()
+  imageUrl!: string;
 }

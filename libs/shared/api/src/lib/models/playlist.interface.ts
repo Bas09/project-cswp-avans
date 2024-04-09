@@ -30,13 +30,14 @@ export interface IPlaylist {
   publicStatus: PublicStatus;
   songs?: ISong[] | null;
   userId: Id;
+  imageUrl?: string;
   // songs: ISong[] | null;
 }
 
 export type ICreatePlaylist = Partial<Pick<IPlaylist, '_id'>> &
   Pick<
     IPlaylist,
-    'title' | 'description' | 'genre' | 'publicStatus' | 'songs'
+    'title' | 'description' | 'genre' | 'publicStatus' | 'songs' | 'imageUrl'
   > & { userId: IUser['_id'] };
 
 export type IUpdatePlaylist = Partial<Omit<IPlaylist, '_id'>>;

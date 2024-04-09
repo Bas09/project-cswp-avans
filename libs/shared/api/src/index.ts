@@ -5,4 +5,4 @@ export * from './lib/models/auth.interface';
 export * from './lib/models/playlist.interface';
 
 export * from './lib/models/song.interface';
-export * from './lib/models/artist.interface';
+export * from './lib/models/party.interface';

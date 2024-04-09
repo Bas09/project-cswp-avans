@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'avans-project-cswp-song-detail',
   templateUrl: './song-detail.component.html',
-  styles: [],
+  styleUrls: ['./song-detail.component.css'],
 })
 export class SongDetailComponent implements OnInit, OnDestroy {
   song: ISong | null = null;

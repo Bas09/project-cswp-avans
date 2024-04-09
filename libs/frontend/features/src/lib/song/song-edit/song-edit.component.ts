@@ -19,6 +19,7 @@ export class SongEditComponent implements OnInit {
   duration = '';
   releaseDate = '';
   genre: SongGenre = SongGenre.Default;
+  imageUrl = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -42,6 +43,7 @@ export class SongEditComponent implements OnInit {
         this.title = song.title;
         this.duration = song.duration;
         this.genre = song.genre;
+        this.imageUrl = song.imageUrl;
       });
     }
   }
@@ -67,6 +69,7 @@ export class SongEditComponent implements OnInit {
       duration: this.song.duration,
       genre: this.song.genre,
       userId: this.userId,
+      imageUrl: this.song.imageUrl,
     };
 
     console.log('After Update', updatedSong);
@@ -85,6 +88,7 @@ export class SongEditComponent implements OnInit {
       duration: this.song.duration,
       genre: this.song.genre,
       userId: this.userId,
+      imageUrl: this.song.imageUrl,
     };
     console.log('New song', newSong);
 

@@ -1,10 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document, Schema as MongooseSchema } from 'mongoose';
-import {
-  IArtist,
-  ArtistGenre,
-  ArtistGender,
-} from '@avans-project-cswp/shared/api';
+import { IParty, IUser } from '@avans-project-cswp/shared/api';
 import {
   IsNotEmpty,
   IsString,
@@ -15,10 +11,10 @@ import {
   ArrayNotEmpty,
 } from 'class-validator';
 
-export type ArtistDocument = Artist & Document;
+export type PartyDocument = Party & Document;
 
 @Schema()
-export class Artist implements IArtist {
+export class Party implements IParty {
   @IsMongoId()
   _id!: string;
 
@@ -26,47 +22,45 @@ export class Artist implements IArtist {
     required: true,
     type: String,
   })
-  name!: string;
-
-  @Prop({
-    required: true,
-    type: String,
-    default: ArtistGender.None,
-  })
-  gender!: ArtistGender;
+  partyName!: string;
 
   @Prop({
     required: true,
     type: String,
   })
-  nationality!: string;
+  creationDate!: string;
 
   @Prop({
     required: true,
     type: String,
   })
-  biography!: string;
-
-  @Prop({
-    required: true,
-    type: String,
-    default: ArtistGenre.Default,
-  })
-  genre!: ArtistGenre;
+  partyDate!: string;
 
   @Prop({
     required: true,
     type: String,
   })
-  @IsDateString()
-  birthDate!: string;
+  location!: string;
+
+  attendees?: IUser[] | null | undefined;
 
   @Prop({
+    required: true,
+    type: Number,
+  })
+  maxAttendees!: number;
+
+  @Prop({
+    required: true,
     type: String,
   })
-  @IsOptional()
-  @IsDateString()
-  deathDate?: string;
+  partyDescription!: string;
+
+  @Prop({
+    required: true,
+    type: String,
+  })
+  partyCreatorId!: IUser;
 }
 
-export const ArtistSchema = SchemaFactory.createForClass(Artist);
+export const PartySchema = SchemaFactory.createForClass(Party);

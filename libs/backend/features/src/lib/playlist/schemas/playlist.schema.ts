@@ -52,6 +52,12 @@ export class Playlist implements IPlaylist {
     required: true,
     type: String,
   })
+  imageUrl?: string;
+
+  @Prop({
+    required: true,
+    type: String,
+  })
   userId!: string;
 }
 

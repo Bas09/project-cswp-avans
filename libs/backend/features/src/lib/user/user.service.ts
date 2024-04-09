@@ -105,6 +105,8 @@ export class UserService {
       _id: '', // Add _id property
       role: UserRole.Unknown, // Add role property
       gender: UserGender.Unknown, // Add gender property
+      imageUrl:
+        'https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png',
     };
 
     try {

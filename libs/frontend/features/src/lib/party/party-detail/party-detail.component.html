@@ -1,4 +1,4 @@
-<div class="artistDetail">
+<div class="partyDetail">
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
@@ -41,29 +41,29 @@
                 <tr
                     class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                     <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ artist?._id }}
+                        {{ party?._id }}
                     </th>
-                    <td class="px-6 py-4">
-                        {{ artist?.name }}
+                    <!-- <td class="px-6 py-4">
+                        {{ party?.name }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ artist?.gender }}
+                        {{ party?.gender }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ artist?.nationality }}
+                        {{ party?.nationality }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ artist?.biography }}
+                        {{ party?.biography }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ artist?.genre }}
+                        {{ party?.genre }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ artist?.birthDate }}
+                        {{ party?.birthDate }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ artist?.deathDate }}
-                    </td>
+                        {{ party?.deathDate }}
+                    </td> -->
                     <td class="px-6 py-4">
                         <a *ngIf="canEdit" routerLink="edit"
                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>

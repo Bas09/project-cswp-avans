@@ -46,17 +46,16 @@ export class User implements IUser {
 
   @Prop({
     required: true,
-    select: false, // do not return password in select statements
+    select: false,
     type: String,
   })
   password = '';
 
-  // @Prop({
-  //   required: false,
-  //   select: true,
-  //   default: 'https://cdn-icons-png.flaticon.com/512/219/219969.png',
-  // })
-  // profileImgUrl!: string;
+  @Prop({
+    required: true,
+    type: String,
+  })
+  imageUrl!: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

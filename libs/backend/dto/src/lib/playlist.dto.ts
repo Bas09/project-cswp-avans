@@ -38,6 +38,10 @@ export class CreatePlaylistDto implements ICreatePlaylist {
   userId!: string;
 
   songs!: ISong[] | null;
+
+  @IsString()
+  @IsNotEmpty()
+  imageUrl!: string;
 }
 
 export class UpsertPlaylistDto implements IUpsertPlaylist {
@@ -62,6 +66,10 @@ export class UpsertPlaylistDto implements IUpsertPlaylist {
   _id!: Id;
 
   songs!: ISong[] | null;
+
+  @IsString()
+  @IsNotEmpty()
+  imageUrl!: string;
 }
 
 export class UpdatePlaylistDto implements IUpdatePlaylist {
@@ -80,4 +88,8 @@ export class UpdatePlaylistDto implements IUpdatePlaylist {
   @IsEnum(PublicStatus)
   @IsNotEmpty()
   publicStatus!: PublicStatus;
+
+  @IsString()
+  @IsNotEmpty()
+  imageUrl!: string;
 }

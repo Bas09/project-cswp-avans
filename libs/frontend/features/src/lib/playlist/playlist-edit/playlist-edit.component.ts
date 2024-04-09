@@ -94,6 +94,7 @@ export class PlaylistEditComponent implements OnInit {
       publicStatus: this.playlist.publicStatus,
       songs: this.playlist.songs,
       userId: this.userId,
+      imageUrl: this.playlist.imageUrl,
       // userId: this.playlist.userId,
     };
     console.log('After Update', updatedPlaylist);
@@ -109,6 +110,11 @@ export class PlaylistEditComponent implements OnInit {
       'Creating playlist clicked in playlist-edit.component.ts',
       'TAG'
     );
+
+    if (this.playlist.imageUrl === '' || this.playlist.imageUrl == null) {
+      this.playlist.imageUrl =
+        'https://images.pexels.com/photos/35610/guitar-bass-instrument-black.jpg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
+    }
     const newPlaylist: IPlaylist = {
       _id: '',
       title: this.playlist.title,
@@ -117,6 +123,7 @@ export class PlaylistEditComponent implements OnInit {
       publicStatus: this.playlist.publicStatus,
       userId: this.userId,
       songs: this.selectedSongs,
+      imageUrl: this.playlist.imageUrl,
 
       // Convert selectedSongs to an array of ISong objects
       // userId: this.playlist.userId,

@@ -37,6 +37,12 @@ export class Song implements ISong {
   })
   userId!: string;
 
+  @Prop({
+    required: true,
+    type: String,
+  })
+  imageUrl!: string;
+
   // @Prop({
   //   required: true,
   //   type: MongooseSchema.Types.ObjectId,

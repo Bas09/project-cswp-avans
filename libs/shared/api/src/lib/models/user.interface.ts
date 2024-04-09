@@ -24,6 +24,7 @@ export interface IUser {
   emailAddress: string;
   password: string;
   token?: string;
+  imageUrl: string;
 }
 
 export interface IUserInfo extends IUserRegistration {
@@ -34,7 +35,7 @@ export interface IUserInfo extends IUserRegistration {
 
 export type ICreateUser = Pick<
   IUser,
-  '_id' | 'name' | 'emailAddress' | 'gender' | 'password' | 'role'
+  '_id' | 'name' | 'emailAddress' | 'gender' | 'password' | 'role' | 'imageUrl'
 >;
 export type IUpdateUser = Partial<Omit<IUser, 'id'>>;
 export type IUpsertUser = IUser;

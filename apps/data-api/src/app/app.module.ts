@@ -3,7 +3,7 @@ import {
   UsersModule,
   PlaylistModule,
   SongModule,
-  ArtistModule,
+  PartyModule,
 } from '@avans-project-cswp/backend/features';
 import { AuthModule } from '@avans-project-cswp/backend/auth';
 import { MongooseModule } from '@nestjs/mongoose';
@@ -16,7 +16,7 @@ import { Logger } from '@nestjs/common';
     AuthModule,
     PlaylistModule,
     SongModule,
-    ArtistModule,
+    PartyModule,
     MongooseModule.forRoot(environment.MONGO_DB_CONNECTION_STRING, {
       connectionFactory: (connection) => {
         connection.on('connected', () => {

@@ -21,12 +21,15 @@ export interface ISong {
   duration: string;
   genre: SongGenre;
   userId: Id;
+  imageUrl: string;
 
   //artist: IArtist
 }
 
 export type ICreateSong = Partial<Pick<ISong, '_id'>> &
-  Pick<ISong, 'title' | 'duration' | 'genre'> & { userId: IUser['_id'] };
+  Pick<ISong, 'title' | 'duration' | 'genre' | 'imageUrl'> & {
+    userId: IUser['_id'];
+  };
 
 export type IUpdateSong = Partial<Omit<ISong, '_id'>>;
 export type IUpsertSong = ISong;

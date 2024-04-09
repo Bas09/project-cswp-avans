@@ -19,31 +19,31 @@
                     </th>
 
                     <th scope="col" class="px-6 py-3">
-                        Artist Details
+                        Party Details
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Artist Genre
+                        Party Genre
                     </th>
                 </tr>
             </thead>
 
             <tbody>
                 <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
-                    *ngFor="let artist of artists">
+                    *ngFor="let party of artists">
 
                     <td class="px-6 py-4">
-                        {{ artist.name }}
+                        {{ party.name }}
                     </td>
 
                     <td class="px-6 py-4">
-                        {{ artist.nationality }}
+                        {{ party.nationality }}
                     </td>
                     <td class="px-6 py-4">
-                        {{ artist.genre }}
+                        {{ party.genre }}
                     </td>
 
                     <td class="px-6 py-4">
-                        <a routerLink="{{ artist._id }}"
+                        <a routerLink="{{ party._id }}"
                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Detail</a>
                     </td>
                 </tr>

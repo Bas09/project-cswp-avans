@@ -26,6 +26,11 @@ export class RegisterComponent implements OnInit {
   register() {
     console.log('Register clicked');
 
+    if (this.user.imageUrl === '' || this.user.imageUrl == null) {
+      this.user.imageUrl =
+        'https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png';
+    }
+
     const newUser: IUser = {
       _id: '',
       name: this.user.name,
@@ -33,6 +38,7 @@ export class RegisterComponent implements OnInit {
       gender: this.user.gender,
       password: this.user.password,
       role: UserRole.Guest,
+      imageUrl: this.user.imageUrl,
     };
     console.log('New user', newUser);
 

@@ -6,7 +6,9 @@
       <div
         class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-auto">
 
-        <img class="rounded-t-lg" src="assets/images/playlist.jpg" alt="" />
+        <img class="rounded-t-lg" [src]="myUser?.imageUrl ? myUser?.imageUrl : 'assets/images/playlist.jpg'"
+          alt="song image" />
+
 
         <div class="p-5">
 
@@ -25,7 +27,7 @@
 <br />
 <br />
 
-<h1 class="text-3xl font-bold text-gray-900 dark:text-white ml-2">Other Users</h1>
+<h1 class="text-3xl font-bold text-gray-900 dark:text-white ml-2">All Users</h1>
 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center">
   <div *ngFor="let user of users">
 
@@ -33,7 +35,9 @@
       <div
         class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-auto">
 
-        <img class="rounded-t-lg" src="assets/images/playlist.jpg" alt="" />
+        <img class="rounded-t-lg" [src]="user?.imageUrl ? user?.imageUrl : 'assets/images/playlist.jpg'"
+          alt="song image" />
+
 
         <div class="p-5">
 

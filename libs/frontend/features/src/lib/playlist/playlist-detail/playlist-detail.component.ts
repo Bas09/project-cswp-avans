@@ -1,25 +1,29 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PlaylistService } from '../playlist.service';
-import { IPlaylist } from '@avans-project-cswp/shared/api';
+import { IPlaylist, ISong } from '@avans-project-cswp/shared/api';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { SongService } from '../../song/song.service';
 
 @Component({
   selector: 'avans-project-cswp-playlist-detail',
   templateUrl: './playlist-detail.component.html',
-  styleUrls: [],
+  styleUrls: ['./playlist-detail.component.css'],
 })
 export class PlaylistDetailComponent implements OnInit, OnDestroy {
   playlist: IPlaylist | null = null;
   subscription: Subscription | undefined = undefined;
   canEdit: boolean = false; // Add isEdit property
 
+  songs: ISong[] = [];
+
   playlistId: string | null = null;
 
   constructor(
     private route: ActivatedRoute,
     private playlistService: PlaylistService,
-    private router: Router
+    private router: Router,
+    private songService: SongService
   ) {}
 
   ngOnInit(): void {
@@ -27,17 +31,35 @@ export class PlaylistDetailComponent implements OnInit, OnDestroy {
       this.playlistId = params.get('id');
 
       // Subscribe to the observable returned by playlistService.read
-      this.playlistService.read(this.playlistId).subscribe(
-        (result) => {
+      this.subscription = this.playlistService.read(this.playlistId).subscribe({
+        next: (result) => {
           this.playlist = result;
-          // Assuming you have an authentication mechanism, check if the current user can edit this playlist
-          // For demonstration, let's assume that any authenticated user can edit any playlist
+
           this.canEdit = true;
+
+          // add song name to songNames array
+          if (this.playlist && this.playlist.songs) {
+            // Convert the comma-separated string to an array
+            const songIds = this.playlist.songs.toString().split(',');
+
+            songIds.forEach((id) => {
+              this.songService.read(id).subscribe({
+                next: (song) => {
+                  this.songs.push(song); // Fix: Push the song object instead of the observable
+
+                  console.log('songs:', this.songs);
+                },
+                error: (error) => {
+                  console.error('Error fetching song:', error);
+                },
+              });
+            });
+          }
         },
-        (error) => {
+        error: (error) => {
           console.error('Error fetching playlist:', error);
-        }
-      );
+        },
+      });
     });
   }
 
@@ -64,32 +86,3 @@ export class PlaylistDetailComponent implements OnInit, OnDestroy {
     this.router.navigate(['/playlist']);
   }
 }
-
-// import { IPlaylist } from '@avans-project-cswp/shared/api';
-// import { Component, OnInit } from '@angular/core';
-// import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-// import { PlaylistService } from '../playlist.service';
-// import { CommonModule } from '@angular/common';
-// import { HttpClientModule } from '@angular/common/http';
-// import { FormsModule } from '@angular/forms';
-// import { DetailComponent } from '../../abstractions/components/detail.component';
-
-// @Component({
-//   selector: 'avans-project-cswp-playlist-detail',
-//   templateUrl: './playlist-detail.component.html',
-//   standalone: true,
-//   imports: [CommonModule, HttpClientModule, RouterModule, FormsModule],
-//   providers: [PlaylistService],
-// })
-// export class PlaylistDetailComponent
-//   extends DetailComponent<IPlaylist>
-//   implements OnInit
-// {
-//   constructor(
-//     playlistService: PlaylistService,
-//     route: ActivatedRoute,
-//     router: Router
-//   ) {
-//     super(playlistService, route, router);
-//   }
-// }

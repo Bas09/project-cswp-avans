@@ -6,8 +6,8 @@ import { environment } from '@avans-project-cswp/shared/util-env';
 
 import {
   ApiResponse,
-  IArtist,
-  ICreateArtist,
+  IParty,
+  ICreateParty,
 } from '@avans-project-cswp/shared/api';
 
 export const httpOptions = {
@@ -16,57 +16,41 @@ export const httpOptions = {
 };
 
 @Injectable()
-export class ArtistService {
-  private endpoint = environment.dataApiUrl + '/artist';
+export class PartyService {
+  private endpoint = environment.dataApiUrl + '/Party';
 
   constructor(private readonly http: HttpClient) {}
 
-  public list(options?: any): Observable<IArtist[] | null> {
+  public list(options?: any): Observable<IParty[] | null> {
     return this.http
-      .get<ApiResponse<IArtist[]>>(this.endpoint, {
+      .get<ApiResponse<IParty[]>>(this.endpoint, {
         ...options,
         ...httpOptions,
       })
       .pipe(
-        map((response: any) => response.results as IArtist[]),
+        map((response: any) => response.results as IParty[]),
         tap(console.log),
         catchError(this.handleError)
       );
   }
 
-  public read(id: string | null, options?: any): Observable<IArtist> {
+  public read(id: string | null, options?: any): Observable<IParty> {
     return this.http
-      .get<ApiResponse<IArtist>>(`${this.endpoint}/${id}`, {
+      .get<ApiResponse<IParty>>(`${this.endpoint}/${id}`, {
         ...options,
         ...httpOptions,
       })
       .pipe(
         tap(console.log),
-        map((response: any) => response.results as IArtist),
+        map((response: any) => response.results as IParty),
         catchError(this.handleError)
       );
   }
 
-  public createArtist(
-    artist: ICreateArtist,
-    options?: any
-  ): Observable<boolean> {
-    console.log('artist given to createArtist() ', artist);
+  public createParty(party: ICreateParty, options?: any): Observable<boolean> {
+    console.log('Party given to createParty() ', party);
     return this.http
-      .post<ApiResponse<IArtist>>(`${this.endpoint}`, artist, {
-        ...options,
-        ...httpOptions,
-      })
-      .pipe(
-        tap(console.log),
-        map((response: any) => response.results),
-        catchError(this.handleError)
-      );
-  }
-
-  public updateArtist(artist: IArtist, options?: any): Observable<void> {
-    return this.http
-      .put<ApiResponse<IArtist>>(`${this.endpoint}/${artist._id}`, artist, {
+      .post<ApiResponse<IParty>>(`${this.endpoint}`, party, {
         ...options,
         ...httpOptions,
       })
@@ -77,11 +61,24 @@ export class ArtistService {
       );
   }
 
-  public removeArtist(id: string, options?: any): Observable<void> {
-    console.log('DELETE ARTIST');
+  public updateParty(party: IParty, options?: any): Observable<void> {
+    return this.http
+      .put<ApiResponse<IParty>>(`${this.endpoint}/${party._id}`, party, {
+        ...options,
+        ...httpOptions,
+      })
+      .pipe(
+        tap(console.log),
+        map((response: any) => response.results),
+        catchError(this.handleError)
+      );
+  }
+
+  public removeParty(id: string, options?: any): Observable<void> {
+    console.log('DELETE Party');
 
     return this.http
-      .delete<ApiResponse<IArtist>>(`${this.endpoint}/${id}`, {
+      .delete<ApiResponse<IParty>>(`${this.endpoint}/${id}`, {
         ...options,
         ...httpOptions,
       })

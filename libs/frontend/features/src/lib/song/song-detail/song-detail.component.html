@@ -2,15 +2,12 @@
     <h1 class="text-3xl font-semibold text-center mb-6">Song Information</h1>
     <div class="grid md:grid-cols-2 gap-8">
         <div class="p-6 bg-white shadow-lg rounded-lg">
-            <img src="https://images.pexels.com/photos/1389429/pexels-photo-1389429.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                alt="Song Image" class="w-full rounded-lg mb-4">
+            <img class="rounded-t-lg" [src]="song?.imageUrl ? song?.imageUrl : 'assets/images/playlist.jpg'"
+                alt="song image" />
 
             <h2 class="text-xl font-semibold mb-2">{{ song?.title }}</h2>
-            <p class="text-gray-700 mb-4">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Phasellus eget
-                ullamcorper quam, vel commodo libero.</p>
-            <p class="text-gray-700 mb-4">Genre: Pop</p>
-            <p class="text-gray-700 mb-4">Duration: 3:30</p>
+            <p class="text-gray-700 mb-4"><b>Genre:</b> {{ song?.genre}}</p>
+            <p class="text-gray-700 mb-4"><b>Duration:</b> {{ song?.duration }}</p>
         </div>
 
         <div class="p-6 bg-white shadow-lg rounded-lg">
@@ -22,9 +19,7 @@
         </div>
     </div>
 
-    <button *ngIf="canEdit" (click)="onDelete()"
-        class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Delete</button>
 
-    <br />
-    <button routerLink="edit" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</button>
+    <button *ngIf="canEdit" (click)="onDelete()" type="button" class="button-danger mr-3 mt-4">Delete</button>
+    <button routerLink="edit" type="button" class="button-primary mt-4">Edit</button>
 </div>

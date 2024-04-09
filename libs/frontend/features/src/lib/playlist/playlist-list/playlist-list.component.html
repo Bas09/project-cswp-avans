@@ -23,7 +23,9 @@
             <div
                 class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-auto">
 
-                <img class="rounded-t-lg" src="assets/images/playlist.jpg" alt="" />
+
+                <img class="rounded-t-lg" [src]="playlist.imageUrl ? playlist.imageUrl : 'assets/images/playlist.jpg'"
+                    alt="song image" />
 
                 <div class="p-5">
 
@@ -33,6 +35,8 @@
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ playlist.genre}}</p>
 
                     <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ playlist.description}}</p>
+
+                    <!-- <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ playlist.songs}}</p> -->
 
                 </div>
             </div>

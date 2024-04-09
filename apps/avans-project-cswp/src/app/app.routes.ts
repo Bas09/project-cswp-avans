@@ -12,7 +12,7 @@ import { RegisterComponent } from 'libs/frontend/features/src/lib/auth/register/
 // import childroutes
 import { userRoutes } from 'libs/frontend/features/src/lib/user/user.routes';
 import { playlistRoutes } from 'libs/frontend/features/src/lib/playlist/playlist.routes';
-import { artistRoutes } from 'libs/frontend/features/src/lib/artist/artist.routes';
+import { partyRoutes } from 'libs/frontend/features/src/lib/party/party.routes';
 import { songRoutes } from 'libs/frontend/features/src/lib/song/song.routes';
 
 export const appRoutes: Route[] = [
@@ -41,7 +41,7 @@ export const appRoutes: Route[] = [
   // playlist pages
   ...playlistRoutes,
 
-  ...artistRoutes,
+  ...partyRoutes,
 
   ...songRoutes,
 

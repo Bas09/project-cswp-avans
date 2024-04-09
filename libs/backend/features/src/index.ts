@@ -12,6 +12,6 @@ export * from './lib/song/song.module';
 export * from './lib/song/schemas/song.schema';
 export * from './lib/song/song.service';
 
-export * from './lib/artist/artist.module';
-export * from './lib/artist/schemas/artist.schema';
-export * from './lib/artist/artist.service';
+export * from './lib/party/party.module';
+export * from './lib/party/schemas/party.schema';
+export * from './lib/party/party.service';
