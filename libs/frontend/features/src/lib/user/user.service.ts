@@ -17,7 +17,10 @@ export class UserService {
       role: UserRole.admin,
       dateOfBirth: '1990-01-01',
       password: 'admin123',
-      playlists: [],
+      playlists: [
+        new Playlist('John’s Favorites', Genre.Rock, PublicStatus.Public, 0),
+        new Playlist('Workout Mix', Genre.ElectronicDance, PublicStatus.Private, 0),
+      ],
     },
     {
       id: 1,
@@ -27,9 +30,61 @@ export class UserService {
       role: UserRole.editor,
       dateOfBirth: '1995-01-01',
       password: 'editor123',
-      playlists: [],
-    }
-
+      playlists: [
+        new Playlist('Relaxing Tunes', Genre.Jazz, PublicStatus.Public, 1),
+      ],
+    },
+    {
+      id: 2,
+      firstName: 'Alice',
+      lastName: 'Smith',
+      emailAdress: 'alice.smith@example.com',
+      role: UserRole.editor,
+      dateOfBirth: '1988-06-15',
+      password: 'user123',
+      playlists: [
+        new Playlist('Top Hits', Genre.Pop, PublicStatus.Private, 2),
+        new Playlist('Party Playlist', Genre.HipHop, PublicStatus.Public, 2),
+      ],
+    },
+    {
+      id: 3,
+      firstName: 'Bob',
+      lastName: 'Johnson',
+      emailAdress: 'bob.johnson@example.com',
+      role: UserRole.editor,
+      dateOfBirth: '1992-11-25',
+      password: 'secure123',
+      playlists: [
+        new Playlist('Road Trip', Genre.Country, PublicStatus.Public, 3),
+      ],
+    },
+    {
+      id: 4,
+      firstName: 'Eve',
+      lastName: 'Taylor',
+      emailAdress: 'eve.taylor@example.com',
+      role: UserRole.editor,
+      dateOfBirth: '1990-03-20',
+      password: 'edit456',
+      playlists: [
+        new Playlist('Chill Vibes', Genre.RnB, PublicStatus.Private, 4),
+        new Playlist('Classical Favorites', Genre.Classical, PublicStatus.Public, 4),
+      ],
+    },
+    {
+      id: 5,
+      firstName: 'Charlie',
+      lastName: 'Brown',
+      emailAdress: 'charlie.brown@example.com',
+      role: UserRole.admin,
+      dateOfBirth: '1985-12-30',
+      password: 'admin456',
+      playlists: [
+        new Playlist('Retro Hits', Genre.Metal, PublicStatus.Public, 5),
+        new Playlist('Reggae Rhythms', Genre.Reggae, PublicStatus.Private, 5),
+      ],
+    },
   ];
 
   constructor(private playlistService: PlaylistService) {

@@ -5,9 +5,7 @@
     <br>
     <p>In deze applicatie hebben muziekliefhebbers de mogelijkheid om een afspeellijst samen te stellen,
         waaraan ze hun favorieten nummers kunnen toevoegen. Deze playlists kunnen gedeeld worden met vrienden van de
-        gebruiker. Naast afspeellijsten heeft de gebruiker ook een abonneelijst waaraan de favorieten artiesten van een
-        gebruiker toegevoegd kunnen worden.
-        Iedere gebruiker kan ook de abonneelijst van vrienden inzien.
+        gebruiker.
     </p><br>
     <p>Naast gebruikers kunnen artiesten zelf ook inloggen op de app. Artiesten kunnen hierdoor zelf nummers toevoegen
         en aanpassingen maken aan bestaande nummers van hun.</p><br>
@@ -148,19 +146,22 @@
                     <td class="border px-4 py-2">id : int</td>
                 </tr>
                 <tr>
-                    <td class="border px-4 py-2">Name : string</td>
+                    <td class="border px-4 py-2">FirstName : string</td>
+                </tr>
+                <tr>
+                    <td class="border px-4 py-2">LastName : string</td>
                 </tr>
                 <tr>
                     <td class="border px-4 py-2">Email : string</td>
                 </tr>
                 <tr>
+                    <td class="border px-4 py-2">Password : string</td>
+                </tr>
+                <tr>
                     <td class="border px-4 py-2">DateOfBirth : string</td>
                 </tr>
                 <tr>
-                    <td class="border px-4 py-2">Country : string</td>
-                </tr>
-                <tr>
-                    <td class="border px-4 py-2">PremiumStatus : int</td>
+                    <td class="border px-4 py-2">Role : enum</td>
                 </tr>
             </tbody>
         </table>
@@ -180,6 +181,9 @@
                     <td class="border px-4 py-2">Name : string</td>
                 </tr>
                 <tr>
+                    <td class="border px-4 py-2">Description : string</td>
+                </tr>
+                <tr>
                     <td class="border px-4 py-2">DateCreated : string</td>
                 </tr>
                 <tr>
@@ -189,7 +193,7 @@
                     <td class="border px-4 py-2">PublicStatus : dateTime</td>
                 </tr>
                 <tr>
-                    <td class="border px-4 py-2">Description : String</td>
+                    <td class="border px-4 py-2">Status : string</td>
                 </tr>
             </tbody>
         </table>
@@ -223,25 +227,7 @@
             </tbody>
         </table>
 
-        <table class="table-auto table-fixed border-collapse border border-blue-400 mt-4 mb-4 mx-2"
-            style="float: left;">
-            <thead>
-                <tr class="bg-blue-200">
-                    <th class="px-4 py-2">SubscriptionList</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="border px-4 py-2">id : int</td>
-                </tr>
-                <tr>
-                    <td class="border px-4 py-2">userName : string</td>
-                </tr>
-                <tr>
-                    <td class="border px-4 py-2">TotalSubscriptions : int</td>
-                </tr>
-            </tbody>
-        </table>
+
         <div style="clear: both;"></div>
     </div>
 
@@ -259,50 +245,46 @@
                 <td class="border px-4 py-2">Name : string</td>
             </tr>
             <tr>
-                <td class="border px-4 py-2">Genre : enum</td>
-            </tr>
-            <tr>
-                <td class="border px-4 py-2">Country : string</td>
+                <td class="border px-4 py-2">Biography : string</td>
             </tr>
             <tr>
                 <td class="border px-4 py-2">DebutYear : dateTime</td>
             </tr>
             <tr>
-                <td class="border px-4 py-2">TotalAlbums : int</td>
+                <td class="border px-4 py-2">Genre : enum</td>
             </tr>
             <tr>
-                <td class="border px-4 py-2">TotalSubscriptions : int</td>
+                <td class="border px-4 py-2">Country : string</td>
             </tr>
+
         </tbody>
     </table>
 
 
     <h2 class="text-xl font-bold" style="margin-top: 380px;">Datamodel / ERD</h2>
-    <p> Deze applicatie heeft de entiteiten User, Playlist, Song, SubscriptionList, Artist. SubscriptionList is een
-        zwakentiteit want deze kan zonder Artist en User niet bestaan.
+    <p> Deze applicatie heeft de entiteiten User, Playlist, Song, Artist. Friend is een
+        zwakentiteit want deze kan zonder User niet bestaan.
         <br><br>
 
         De relaties zijn alsvolgt:
         <br><br>
-        User - Playlist: Een user kan 0 of meerdere playlists hebben.
+        User - Playlist: Een user kan 0 of meerdere playlists hebben.<br>
         Playlist - user: Iedere aangemaakte playlist hoort tot 1 user.
         <br><br>
-        Playlist - Song: Iedere playlist bevat 0 of meerdere songs.
+        Playlist - Song: Iedere playlist bevat 0 of meerdere songs.<br>
         Song - Playlist: Iedere song kan aan 0 of meerdere playlist toegevoegd worden.
         <br><br>
-        User - SubscriptionList: Iedere SubscriptionList hoort tot 1 user en iedere user heeft 1 SubscriptionList.
+        User - Artist: Een user kan 0 of meerdere artiesten aanmaken wanner de user admin rechten heeft.<br>
+        Artist - User: Iedere artiest wordt door maar 1 user aangemaakt.
         <br><br>
-        SubscriptionList - Artist: Een SubscriptionList kan 0 of meerdere artiesten bevatten.
-        Artist - SubscriptionList: Iedere artiest kan aan 0 of meerdere SubscriptionLists toegevoegd zijn.
-        <br>
-        <br>
-        Artist - Song: Iedere Artist heeft 1 of meerdere songs.
-        Song - Artist: Iedere song behoort tot een artiest.
+        Artist - Song: Een artiest kan 0 of meerdere songs hebben.<br>
+        Song - Artist: Iedere song hoort bij 1 artiest.
+
     </p>
 
     <br>
 
     <section class="hero container max-w-screen-lg mx-auto pb-10 flex justify-center">
-        <img src="assets/ERD.png" alt="ERD">
+        <img src="assets/ERD1.jpg" alt="ERD">
     </section>
 </div>

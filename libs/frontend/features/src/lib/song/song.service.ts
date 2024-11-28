@@ -31,6 +31,30 @@ export class SongService {
       artistName: 'Michael Jackson',
       imageUrl: 'https://via.placeholder.com/150',
     },
+    {
+      _id: 4,
+      title: 'Bohemian Rhapsody',
+      duration: '5:55',
+      genre: SongGenre.Rock,
+      artistName: 'Queen',
+      imageUrl: 'https://via.placeholder.com/150',
+    },
+    {
+      _id: 5,
+      title: 'Shape of You',
+      duration: '3:53',
+      genre: SongGenre.Pop,
+      artistName: 'Ed Sheeran',
+      imageUrl: 'https://via.placeholder.com/150',
+    },
+    {
+      _id: 6,
+      title: 'Take Five',
+      duration: '5:24',
+      genre: SongGenre.Jazz,
+      artistName: 'Dave Brubeck',
+      imageUrl: 'https://via.placeholder.com/150',
+    },
   ];
 
   private songsSubject = new BehaviorSubject<Song[]>(this.songs);
