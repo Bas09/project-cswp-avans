@@ -1,0 +1,39 @@
+.button-primary {
+  background-color: #4a90e2;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-primary:hover {
+  background-color: #357ae8;
+}
+
+.button-primary:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.5);
+}
+
+.button-danger {
+  background-color: #ff3b30;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.button-danger:hover {
+  background-color: #d9342e;
+}
+
+.button-danger:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(255, 59, 48, 0.5);
+}

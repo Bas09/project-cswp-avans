@@ -1,49 +1,45 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from '../user.model';
 import { UserService } from '../user.service';
-
-//import { RouterLink } from '@angular/router';
+import { User, UserRole } from '../user.model';
 
 @Component({
-  selector: 'avans-project-cswp-user-edit',
+  selector: 'app-user-edit',
   templateUrl: './user-edit.component.html',
 })
 export class UserEditComponent implements OnInit {
-  userId: string | null = null;
   user: User = new User();
+  roles = Object.values(UserRole); // For role dropdown in the template
+  isEditMode = false; // Tracks if it's an edit or a new user
 
   constructor(
-    private route: ActivatedRoute,
+    private userService: UserService,
     private router: Router,
-    private userService: UserService
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    // Get the user ID from the route (if available)
     this.route.paramMap.subscribe((params) => {
-      this.userId = params.get('id');
-      if (this.userId) {
-        // Bestaande user
-        this.user = this.userService.getUserById(Number(this.userId));
-        console.log('Existing User:', this.user);
-      } else {
-        // Nieuwe user
-        this.user = new User();
-        console.log('New User:', this.user);
+      const userId = params.get('id');
+      if (userId) {
+        this.isEditMode = true;
+        const user = this.userService.getUserById(Number(userId));
+        if (user) {
+          this.user = { ...user }; // Clone user data
+        }
       }
     });
   }
 
-  save() {
-    console.log('Before Save - User:', this.user);
-    if (this.userId) {
-      this.userService.editUser(this.user!);
-      console.log('After Edit - User:', this.user);
+  saveUser(): void {
+    if (this.isEditMode) {
+      // Existing user
+      this.userService.editUser(this.user);
     } else {
-      this.userService.addUser(this.user!);
-      console.log('After Save - User:', this.user);
+      // New user
+      this.userService.addUser(this.user);
     }
-    // this.router.navigate(['..'], { relativeTo: this.route });
-    this.router.navigate(['/users']);
+    this.router.navigate(['/users']); // Redirect back to user list
   }
 }

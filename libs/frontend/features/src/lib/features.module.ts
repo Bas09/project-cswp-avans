@@ -1,31 +1,41 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { RouterLink } from '@angular/router';
+import { RouterModule } from '@angular/router';  // Correct import
 import { FormsModule } from '@angular/forms';
 
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { MealListComponent } from './meal/meal-list/meal-list.component';
 import { MealDetailComponent } from './meal/meal-detail/meal-detail.component';
 import { MealService } from './meal/meal.service';
-
 import { AboutComponent } from './about/about.component';
 
-// usersimports
+// Users imports
 import { UserDetailComponent } from './user/user-detail/user-detail.component';
 import { UserListComponent } from './user/user-list/user-list.component';
 import { UserEditComponent } from './user/user-edit/user-edit.component';
 
+// Auth imports
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 
-import { PlaylistComponent } from './playlist/playlist-list/playlist-list.component';
+// Playlist imports
+import { PlaylistListComponent } from './playlist/playlist-list/playlist-list.component';
 import { PlaylistDetailComponent } from './playlist/playlist-detail/playlist-detail.component';
 import { PlaylistEditComponent } from './playlist/playlist-edit/playlist-edit.component';
-// playlist imports
+
+import { SongEditComponent } from './song/song-edit/song-edit.component';
+import { SongListComponent } from './song/song-list/song-list.component';
+import { SongDetailComponent } from './song/song-detail/song-detail.component';
+
 
 @NgModule({
-  imports: [CommonModule, HttpClientModule, RouterLink, FormsModule],
+  imports: [
+    CommonModule,
+    HttpClientModule,
+    RouterModule, // Add RouterModule here
+    FormsModule
+  ],
   declarations: [
     MealListComponent,
     MealDetailComponent,
@@ -36,9 +46,12 @@ import { PlaylistEditComponent } from './playlist/playlist-edit/playlist-edit.co
     DashboardComponent,
     LoginComponent,
     RegisterComponent,
-    PlaylistComponent,
+    PlaylistListComponent,
     PlaylistDetailComponent,
     PlaylistEditComponent,
+    SongEditComponent,
+    SongListComponent,
+    SongDetailComponent,
   ],
   providers: [MealService, DatePipe],
   exports: [
@@ -51,9 +64,9 @@ import { PlaylistEditComponent } from './playlist/playlist-edit/playlist-edit.co
     UserDetailComponent,
     LoginComponent,
     RegisterComponent,
-    PlaylistComponent,
+    PlaylistListComponent,
     PlaylistDetailComponent,
     PlaylistEditComponent,
   ],
 })
-export class FeaturesModule {}
+export class FeaturesModule { }

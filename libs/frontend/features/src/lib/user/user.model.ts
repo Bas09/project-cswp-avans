@@ -12,6 +12,7 @@ export class User {
   lastName: string = '';
   emailAdress: string = '';
   role: UserRole = UserRole.guest;
+  dateOfBirth: string = '';
   password: string = '';
   playlists: Playlist[] = [];
 
@@ -19,11 +20,13 @@ export class User {
     firstName: string = '',
     lastName: string = '',
     emailAdress: string = '',
+    dateOfBirth: string = '',
     playlists: Playlist[] = []
   ) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.emailAdress = emailAdress;
     this.playlists = playlists;
+    this.dateOfBirth = dateOfBirth;
   }
 }

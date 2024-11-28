@@ -22,14 +22,17 @@ export class Playlist {
   dateCreated: Date = new Date();
   genre: Genre = Genre.Pop;
   publicStatus: PublicStatus = PublicStatus.Private;
+  userId: number = 0; // New property to store the user ID
 
   constructor(
     name: string = '',
     genre: Genre = Genre.Pop,
-    publicStatus: PublicStatus = PublicStatus.Private
+    publicStatus: PublicStatus = PublicStatus.Private,
+    userId: number = 0 // Add userId to constructor
   ) {
     this.name = name;
     this.genre = genre;
     this.publicStatus = publicStatus;
+    this.userId = userId; // Initialize userId
   }
 }

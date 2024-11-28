@@ -1,30 +1,43 @@
 import { Component, OnInit } from '@angular/core';
-import { Playlist } from '../playlist.model';
 import { PlaylistService } from '../playlist.service';
-
-import { UserListComponent } from '../../user/user-list/user-list.component';
-import { User } from '../../user/user.model';
-import { UserService } from '../../user/user.service';
+import { UserService } from '../../user/user.service'; 
+import { User } from '../../user/user.model'; 
+import { Playlist } from '../playlist.model';
 
 @Component({
-  selector: 'avans-project-cswp-user-list',
+  selector: 'avans-project-cswp-playlist-list',
   templateUrl: './playlist-list.component.html',
-  styles: [],
 })
-export class PlaylistComponent implements OnInit {
-  playlists: Playlist[] = [];
+export class PlaylistListComponent implements OnInit {
   userlist: User[] = [];
+  selectedUserId: number | undefined;
+  playlists: Playlist[] = [];
 
   constructor(
-    private playlistService: PlaylistService,
-    private userService: UserService
+    private userService: UserService,
+    private playlistService: PlaylistService
   ) {}
 
   ngOnInit(): void {
-    this.playlists = this.playlistService.getPlaylists();
-    console.log('Playlists:', this.playlists);
+    // Fetch all users from the UserService
+    this.userService.getUsers().subscribe((users) => {
+      this.userlist = users;
+      this.selectedUserId = this.userlist[0]?.id; // Default to the first user (or choose logic for default)
+      this.loadUserPlaylists(); // Load playlists for the first user
+    });
+  }
 
-    this.userlist = this.userService.getUsers();
-    console.log('Users:', this.userlist);
+  loadUserPlaylists(): void {
+    if (this.selectedUserId) {
+      const user = this.userlist.find((u) => u.id === this.selectedUserId);
+      if (user) {
+        this.playlists = user.playlists;
+      }
+    }
+  }
+
+  onUserChange(userId: number): void {
+    this.selectedUserId = userId;
+    this.loadUserPlaylists(); // Load playlists when user is changed
   }
 }

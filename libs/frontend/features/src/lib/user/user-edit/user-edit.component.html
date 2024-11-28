@@ -1,5 +1,5 @@
 <div class="component edit">
-  <form (ngSubmit)="save()">
+  <form (ngSubmit)="saveUser()">
     <div class="mb-6">
       <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
       <input type="email" id="email" name="email"
@@ -34,6 +34,13 @@
       <input type="text" id="lastName" name="lastName"
         class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
         [(ngModel)]="user.lastName" placeholder="Last Name" required>
+    </div>
+
+    <div class="mb-6">
+      <label for="dateOfBirth" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Name</label>
+      <input type="text" id="dateOfBirth" name="dateOfBirth"
+        class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
+        [(ngModel)]="user.dateOfBirth" placeholder="dateOfBirth" required>
     </div>
 
     <div class="mb-6">

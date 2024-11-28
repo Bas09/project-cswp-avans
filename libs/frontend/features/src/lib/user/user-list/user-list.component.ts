@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../user.model';
 import { UserService } from '../user.service';
+import { User } from '../user.model'; // Make sure you import the User model
 
 @Component({
   selector: 'avans-project-cswp-user-list',
   templateUrl: './user-list.component.html',
-
-  styles: [],
 })
 export class UserListComponent implements OnInit {
-  users: User[] = [];
+  users: User[] = [];  // Array to hold users
 
   constructor(private userService: UserService) {}
 
   ngOnInit(): void {
-    this.users = this.userService.getUsers();
-    console.log('Users:', this.users);
+    // Fetch all users when the component initializes
+    this.userService.getUsers().subscribe((users) => {
+      this.users = users;
+    });
   }
 }
