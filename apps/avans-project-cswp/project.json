@@ -112,20 +112,7 @@
       },
       "defaultConfiguration": "production"
     },
-    "serve-ssr": {
-      "executor": "@angular-devkit/build-angular:ssr-dev-server",
-      "configurations": {
-        "development": {
-          "browserTarget": "avans-project-cswp:build:development",
-          "serverTarget": "avans-project-cswp:server:development"
-        },
-        "production": {
-          "browserTarget": "avans-project-cswp:build:production",
-          "serverTarget": "avans-project-cswp:server:production"
-        }
-      },
-      "defaultConfiguration": "development"
-    },
+
     "prerender": {
       "executor": "@angular-devkit/build-angular:prerender",
       "options": {
