@@ -1,7 +1,6 @@
 import { Route } from '@angular/router';
 
 import { AboutComponent } from 'libs/frontend/features/src/lib/about/about.component';
-import { MealListComponent } from 'libs/frontend/features/src/lib/meal/meal-list/meal-list.component';
 
 import { DashboardComponent } from 'libs/frontend/features/src/lib/dashboard/dashboard.component';
 
@@ -35,11 +34,7 @@ export const appRoutes: Route[] = [
     component: AboutComponent,
   },
 
-  // meal page
-  {
-    path: 'meals',
-    component: MealListComponent,
-  },
+
 
   // user pages
   ...userRoutes,

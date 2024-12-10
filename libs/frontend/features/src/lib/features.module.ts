@@ -5,9 +5,7 @@ import { RouterModule } from '@angular/router';  // Correct import
 import { FormsModule } from '@angular/forms';
 
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { MealListComponent } from './meal/meal-list/meal-list.component';
-import { MealDetailComponent } from './meal/meal-detail/meal-detail.component';
-import { MealService } from './meal/meal.service';
+
 import { AboutComponent } from './about/about.component';
 
 // Users imports
@@ -37,8 +35,6 @@ import { SongDetailComponent } from './song/song-detail/song-detail.component';
     FormsModule
   ],
   declarations: [
-    MealListComponent,
-    MealDetailComponent,
     AboutComponent,
     UserDetailComponent,
     UserEditComponent,
@@ -53,10 +49,9 @@ import { SongDetailComponent } from './song/song-detail/song-detail.component';
     SongListComponent,
     SongDetailComponent,
   ],
-  providers: [MealService, DatePipe],
+  providers: [DatePipe],
   exports: [
-    MealListComponent,
-    MealDetailComponent,
+
     AboutComponent,
     UserEditComponent,
     UserListComponent,

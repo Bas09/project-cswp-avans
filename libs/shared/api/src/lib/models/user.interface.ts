@@ -1,15 +1,43 @@
+// import { IEntity } from 'libs/frontend/common/src/lib/entity/entity.model';
+import { IUserRegistration } from './auth.interface';
 import { Id } from './id.type';
 
-// Voor nu is onze user een string; later zullen we hier een User object van maken.
-type User = string;
-
-export interface IUser {
-  id: Id;
-  name: string;
-  email: string;
-  password: string;
+export enum UserRole {
+  Admin = 'admin',
+  Editor = 'editor',
+  Guest = 'guest',
+  Unknown = 'unknown',
 }
 
-export type ICreateUser = Pick<IUser, 'name' | 'email' | 'password'>;
+export enum UserGender {
+  Male = 'Male',
+  Female = 'Female',
+  None = 'None',
+  Unknown = 'Unknown',
+}
+
+export interface IUser {
+  _id: Id;
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  role: UserRole;
+  gender: UserGender;
+  country: string;
+
+}
+
+export interface IUserInfo extends IUserRegistration {
+  _id: Id;
+  role: UserRole;
+  gender: UserGender;
+}
+
+export type ICreateUser = Pick<
+  IUser,
+  '_id' | 'firstName' | 'lastName' | 'email' | 'password' | 'role' | 'gender' | 'country'
+>;
 export type IUpdateUser = Partial<Omit<IUser, 'id'>>;
 export type IUpsertUser = IUser;
+export type ILoginUser = Pick<IUser, 'email' | 'password'>;
